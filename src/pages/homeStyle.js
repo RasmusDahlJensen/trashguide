@@ -140,3 +140,7 @@ export const ArticleButtonContainer = styled.div`
 	display: flex;
 	gap: 10px;
 `;
+
+export const BackgroundImage = styled.img`
+	width: 100%;
+`;

@@ -20,7 +20,7 @@ export const Header = () => {
 	};
 
 	return (
-		<HeaderContainer>
+		<HeaderContainer id="top">
 			{/* Logo */}
 			<NavItem>
 				<a href="/">

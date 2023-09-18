@@ -7,6 +7,7 @@ import {
 	ArticleContainer,
 	ArticleContent,
 	ArticleTitle,
+	BackgroundImage,
 	ButtonContainer,
 	CallToAction,
 	MainContainer,
@@ -73,7 +74,7 @@ export const Home = () => {
 					</ArticleContent>
 				</ArticleContainer>
 			</MainContainer>
-			<img src={bgImage} alt="" />
+			<BackgroundImage src={bgImage} alt="background artwork" />
 		</>
 	);
 };

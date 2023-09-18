@@ -43,7 +43,7 @@ export const Home = () => {
 						</p>
 						<ArticleButtonContainer>
 							<ArticleButtonOne>
-								<a href="/sortering">Se affaldsguide</a>
+								<a href="/sorting">Se affaldsguide</a>
 							</ArticleButtonOne>
 							<ArticleButtonTwo>
 								<a href="/">Bestil storskrald</a>

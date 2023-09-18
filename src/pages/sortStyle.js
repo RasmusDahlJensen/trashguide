@@ -48,5 +48,6 @@ export const TitleContainer = styled.div`
 `;
 
 export const BackgroundImage = styled.img`
-	height: 300px;
+	width: 100%;
+	margin-bottom: -7px;
 `;

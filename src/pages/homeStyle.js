@@ -143,4 +143,5 @@ export const ArticleButtonContainer = styled.div`
 
 export const BackgroundImage = styled.img`
 	width: 100%;
+	margin-bottom: -4px;
 `;

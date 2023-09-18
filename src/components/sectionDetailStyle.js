@@ -6,6 +6,7 @@ export const DetailContainer = styled.main`
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 	background-color: white;
 	border-radius: 15px;
+	overflow: hidden;
 `;
 
 export const TitleContainer = styled.div`

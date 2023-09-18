@@ -7,7 +7,6 @@ export const SectionDetail = () => {
 	const { section_id } = useParams();
 	const [productData, setProductData] = useState();
 	const [loading, setLoading] = useState(true);
-	const [searchQuery, setSearchQuery] = useState("");
 
 	useEffect(() => {
 		const fetchData = async () => {

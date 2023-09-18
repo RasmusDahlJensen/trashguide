@@ -14,6 +14,7 @@ import {
 
 import articleOnePic from "../assets/articleOne.png";
 import articleTwoPic from "../assets/articleTwo.png";
+import bgImage from "../assets/Layout/bg-wave-1.svg";
 
 export const Home = () => {
 	return (
@@ -72,9 +73,7 @@ export const Home = () => {
 					</ArticleContent>
 				</ArticleContainer>
 			</MainContainer>
-			<figure>
-				<img src="" alt="" />
-			</figure>
+			<img src={bgImage} alt="" />
 		</>
 	);
 };

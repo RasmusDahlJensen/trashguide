@@ -4,8 +4,8 @@ import {
 	SlideshowImage,
 	ControlButton,
 } from "./slideShowStyle";
-import rightArrow from "../assets/arrowRight.png";
-import leftArrow from "../assets/arrowLeft.png";
+import rightArrow from "../assets/Layout/icon-arrow-right.svg";
+import leftArrow from "../assets/Layout/icon-arrow-left.svg";
 
 export const Slideshow = () => {
 	// State to track the current slide

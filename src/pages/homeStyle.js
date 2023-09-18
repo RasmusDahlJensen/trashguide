@@ -38,21 +38,43 @@ export const ButtonContainer = styled.div`
 `;
 
 export const MainContainer = styled.main`
-	margin-top: 150px;
+	max-width: 1200px;
+	margin: auto;
+	margin-top: 200px;
+	@media (max-width: 800px) {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 15px;
+	}
 `;
 
 export const ArticleContainer = styled.article`
 	margin-top: 150px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 50px;
+	img {
+		width: 500px;
+	}
+	@media (max-width: 800px) {
+		max-width: 500px;
+		img {
+			display: none;
+		}
+	}
 `;
 
 export const ArticleContent = styled.div`
+	margin-top: 100px;
 	p {
 		width: 475px;
 	}
 `;
 
 export const ArticleTitle = styled.div`
-	width: 250px;
+	width: 300px;
 	h2 {
 		font-size: 44px;
 		font-weight: 400;
@@ -80,5 +102,8 @@ export const ArticleTitle = styled.div`
 		right: -40px;
 		top: 35px;
 		z-index: -1;
+	}
+	@media (max-width: 800px) {
+		text-align: left;
 	}
 `;

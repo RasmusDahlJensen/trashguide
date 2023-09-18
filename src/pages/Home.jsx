@@ -9,6 +9,9 @@ import {
 	MainContainer,
 } from "./homeStyle";
 
+import articleOnePic from "../assets/articleOne.png";
+import articleTwoPic from "../assets/articleTwo.png";
+
 export const Home = () => {
 	return (
 		<>
@@ -39,12 +42,25 @@ export const Home = () => {
 						</div>
 					</ArticleContent>
 					<div>
-						<img src="" alt="" srcset="" />
+						<img src={articleOnePic} alt="" srcset="" />
 					</div>
 				</ArticleContainer>
 				<ArticleContainer>
-					<div></div>
-					<div></div>
+					<div>
+						<img src={articleTwoPic} alt="" srcset="" />
+					</div>
+					<ArticleContent>
+						<ArticleTitle>
+							<h2>Bestil din nye affaldsbeholder</h2>
+						</ArticleTitle>
+						<p>
+							when an unknown printer took a galley of type and scramble it to
+							make a type specimen book. It has survived not only
+						</p>
+						<div>
+							<a href="/purchase">Bestil nu</a>
+						</div>
+					</ArticleContent>
 				</ArticleContainer>
 			</MainContainer>
 		</>

@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
 	background-color: ${(props) => props.theme.secondaryColor};
-	height: 200px;
+	max-height: 250px;
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	padding: 20px 50px 0 50px;
 	img {
 		max-width: 200px;

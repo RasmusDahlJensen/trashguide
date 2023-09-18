@@ -49,6 +49,8 @@ export const Nav = styled.nav`
 	/* Mobile Menu Styles */
 	@media (max-width: 1150px) {
 		display: none;
+		margin-top: 25px;
+		gap: 20px;
 		&.show {
 			display: flex;
 			flex-direction: column;

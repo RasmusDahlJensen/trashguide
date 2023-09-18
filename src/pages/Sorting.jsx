@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { SectionCard } from "../components/SectionCard";
-import { CardContainer, MainContainer, SearchBar } from "./sortStyle";
+import {
+	CardContainer,
+	MainContainer,
+	SearchBar,
+	TitleContainer,
+} from "./sortStyle";
 import { Outlet } from "react-router-dom";
 
 export const Sorting = () => {
@@ -32,19 +37,23 @@ export const Sorting = () => {
 		setSearchQuery(event.target.value);
 	};
 
-	// Item filter based on sarch
+	// Item filter based on search
 	const filteredProductArr = productArr.filter((product) =>
 		product.title.toLowerCase().includes(searchQuery.toLowerCase())
 	);
 
 	return (
 		<MainContainer>
-			<SearchBar
-				type="text"
-				placeholder="Search..."
-				value={searchQuery}
-				onChange={handleSearchInputChange}
-			/>
+			<TitleContainer>
+				<h2>Din guide</h2>
+				<h3>til en sund affaldssortering</h3>
+				<SearchBar
+					type="text"
+					placeholder="Søg på affald"
+					value={searchQuery}
+					onChange={handleSearchInputChange}
+				/>
+			</TitleContainer>
 			<CardContainer>
 				{loading ? (
 					<p>Loading...</p>

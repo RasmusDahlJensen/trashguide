@@ -14,6 +14,7 @@ export const GlobalStyles = createGlobalStyle`
   main {
     min-height: 60vh;
     max-width: 1200px;
+    margin: auto;
   }
 
   h1, h2, h3, h4, p, a {

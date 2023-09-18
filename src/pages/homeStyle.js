@@ -107,3 +107,36 @@ export const ArticleTitle = styled.div`
 		text-align: left;
 	}
 `;
+
+export const ArticleButtonOne = styled.div`
+	background-color: ${(props) => props.theme.secondaryColor};
+	width: 150px;
+	height: 30px;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	a {
+		color: white;
+		text-decoration: none;
+	}
+`;
+export const ArticleButtonTwo = styled.div`
+	border: 1px solid;
+	border-color: ${(props) => props.theme.secondaryColor};
+	width: 150px;
+	height: 30px;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	a {
+		color: ${(props) => props.theme.secondaryColor};
+		text-decoration: none;
+	}
+`;
+
+export const ArticleButtonContainer = styled.div`
+	display: flex;
+	gap: 10px;
+`;

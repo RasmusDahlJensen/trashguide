@@ -1,6 +1,9 @@
 import React from "react";
 import { Slideshow } from "../components/Slideshow";
 import {
+	ArticleButtonContainer,
+	ArticleButtonOne,
+	ArticleButtonTwo,
 	ArticleContainer,
 	ArticleContent,
 	ArticleTitle,
@@ -36,18 +39,22 @@ export const Home = () => {
 							beholdere. Du får også tips og tricks til, hvordan du gør det nemt
 							at sortere hjemme hos dig.
 						</p>
-						<div>
-							<a href="/sortering">Se affaldsguide</a>
-							<a href="/">Bestil storskrald</a>
-						</div>
+						<ArticleButtonContainer>
+							<ArticleButtonOne>
+								<a href="/sortering">Se affaldsguide</a>
+							</ArticleButtonOne>
+							<ArticleButtonTwo>
+								<a href="/">Bestil storskrald</a>
+							</ArticleButtonTwo>
+						</ArticleButtonContainer>
 					</ArticleContent>
 					<div>
-						<img src={articleOnePic} alt="" srcset="" />
+						<img src={articleOnePic} alt="Sorting" srcset="" />
 					</div>
 				</ArticleContainer>
 				<ArticleContainer>
 					<div>
-						<img src={articleTwoPic} alt="" srcset="" />
+						<img src={articleTwoPic} alt="Containers" srcset="" />
 					</div>
 					<ArticleContent>
 						<ArticleTitle>
@@ -58,7 +65,9 @@ export const Home = () => {
 							make a type specimen book. It has survived not only
 						</p>
 						<div>
-							<a href="/purchase">Bestil nu</a>
+							<ArticleButtonOne>
+								<a href="/purchase">Bestil nu</a>
+							</ArticleButtonOne>
 						</div>
 					</ArticleContent>
 				</ArticleContainer>

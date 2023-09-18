@@ -25,10 +25,10 @@ export const SlideshowImage = styled.img`
 export const ControlButton = styled.button`
 	position: absolute;
 	top: 50%;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.2);
 	border: none;
 	border-radius: 10px;
-	padding: 5px;
+	padding: 2px;
 	cursor: pointer;
 	z-index: 1;
 	${(props) => (props.direction === "prev" ? "left: 0;" : "right: 0;")};

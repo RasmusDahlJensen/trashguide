@@ -19,4 +19,15 @@ export const TitleContainer = styled.div`
 		margin-left: 35px;
 		color: white;
 	}
+	img {
+		height: 100%;
+	}
+`;
+
+export const CardContainer = styled.div`
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+	padding: 50px;
 `;

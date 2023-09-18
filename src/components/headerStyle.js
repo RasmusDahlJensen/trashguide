@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
 	color: #fff;
+	background-color: white;
 	a {
 		text-decoration: none;
 		color: black;

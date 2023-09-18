@@ -8,11 +8,11 @@ export const GlobalStyles = createGlobalStyle`
     background: linear-gradient(
       180deg,
       rgba(235, 246, 235, 1) 0%,
-      rgba(255, 255, 255, 1) 10%)
+      rgba(255, 255, 255, 1)20%)
   }
 
   main {
-    min-height: 60vh;
+    min-height: 100vh;
     max-width: 1200px;
     margin: auto;
   }

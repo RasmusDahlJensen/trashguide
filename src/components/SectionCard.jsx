@@ -1,6 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { CardButton, CardContainer } from "./sectionCardStyle";
+import {
+	CardContainer,
+	CardTitle,
+	CardImage,
+	CardText,
+} from "./sectionCardStyle";
 
 export const SectionCard = ({ section }) => {
 	const navigate = useNavigate();
@@ -10,15 +15,11 @@ export const SectionCard = ({ section }) => {
 	};
 
 	return (
-		<CardContainer>
-			<img src={section.filepath} alt="" />
-			<CardButton
-				color={section.color}
-				onClick={() => navigateDetail(section.id)}
-				alt={section.filename}
-			>
-				<p>{section.title}</p>
-			</CardButton>
+		<CardContainer onClick={() => navigateDetail(section.id)}>
+			<CardImage src={section.filepath} alt={section.filename} />
+			<CardTitle color={section.color}>
+				<CardText>{section.title}</CardText>
+			</CardTitle>
 		</CardContainer>
 	);
 };

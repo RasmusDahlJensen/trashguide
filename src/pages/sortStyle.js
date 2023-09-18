@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
 import lookingGlassIcon from "../assets/Layout/icon-search.svg";
+import bgImage from "../assets/Layout/bg-waves-1.svg";
 
 export const MainContainer = styled.main``;
 
 export const CardContainer = styled.div`
 	margin: 15px 0 15px 0;
 	display: flex;
-	flex-direction: column;
-	gap: 15px;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 25px;
+	margin-top: 100px;
 `;
 
 export const SearchBar = styled.input`
@@ -42,4 +45,8 @@ export const TitleContainer = styled.div`
 	h3 {
 		color: ${(props) => props.theme.secondaryColor};
 	}
+`;
+
+export const BackgroundImage = styled.img`
+	height: 300px;
 `;

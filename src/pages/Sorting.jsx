@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { SectionCard } from "../components/SectionCard";
 import {
+	BackgroundImage,
 	CardContainer,
+	DoubleImage,
+	GradientContainer,
 	MainContainer,
 	SearchBar,
 	TitleContainer,
 } from "./sortStyle";
 import { Outlet } from "react-router-dom";
+import bgImage from "../assets/Layout/bg-waves-1.svg";
 
 export const Sorting = () => {
 	const [productArr, setProductArr] = useState([]);
@@ -43,29 +47,32 @@ export const Sorting = () => {
 	);
 
 	return (
-		<MainContainer>
-			<TitleContainer>
-				<h2>Din guide</h2>
-				<h3>til en sund affaldssortering</h3>
-				<SearchBar
-					type="text"
-					placeholder="Søg på affald"
-					value={searchQuery}
-					onChange={handleSearchInputChange}
-				/>
-			</TitleContainer>
-			<CardContainer>
-				{loading ? (
-					<p>Loading...</p>
-				) : filteredProductArr.length === 0 ? (
-					<p>Ingen sektioner fundet</p>
-				) : (
-					filteredProductArr.map((product, index) => (
-						<SectionCard key={index} section={product} />
-					))
-				)}
-			</CardContainer>
-			<Outlet />
-		</MainContainer>
+		<>
+			<MainContainer>
+				<TitleContainer>
+					<h2>Din guide</h2>
+					<h3>til en sund affaldssortering</h3>
+					<SearchBar
+						type="text"
+						placeholder="Søg på affald"
+						value={searchQuery}
+						onChange={handleSearchInputChange}
+					/>
+				</TitleContainer>
+				<CardContainer>
+					{loading ? (
+						<p>Loading...</p>
+					) : filteredProductArr.length === 0 ? (
+						<p>Ingen sektioner fundet</p>
+					) : (
+						filteredProductArr.map((product, index) => (
+							<SectionCard key={index} section={product} />
+						))
+					)}
+				</CardContainer>
+				<Outlet />
+			</MainContainer>
+			<BackgroundImage src={bgImage} alt="background artwork" />
+		</>
 	);
 };

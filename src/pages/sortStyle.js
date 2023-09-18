@@ -8,3 +8,7 @@ export const CardContainer = styled.div`
 	flex-direction: column;
 	gap: 15px;
 `;
+
+export const SearchBar = styled.input`
+	// Add your styles for the search bar here
+`;

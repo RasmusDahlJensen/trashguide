@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
+import { Sorting } from "./pages/Sorting";
 
 export const AppRouter = () => {
 	return (
@@ -12,6 +13,7 @@ export const AppRouter = () => {
 			{/* Regular route */}
 			{/* <Route path="/pageTwo" element={<pageTwo />} /> */}
 			<Route index element={<Home />} />
+			<Route path="/sorting" element={<Sorting />} />
 		</Routes>
 	);
 };

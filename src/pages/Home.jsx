@@ -72,6 +72,9 @@ export const Home = () => {
 					</ArticleContent>
 				</ArticleContainer>
 			</MainContainer>
+			<figure>
+				<img src="" alt="" />
+			</figure>
 		</>
 	);
 };

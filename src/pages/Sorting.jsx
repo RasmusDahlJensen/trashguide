@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { SectionCard } from "../components/SectionCard";
-import { CardContainer, MainContainer, TitleContainer } from "./sortStyle";
+import { CardContainer, MainContainer, } from "./sortStyle";
 import { Outlet } from "react-router-dom";
 
 export const Sorting = () => {
@@ -28,9 +28,6 @@ export const Sorting = () => {
 
 	return (
 		<MainContainer>
-			<TitleContainer>
-				<h1>Oversigt</h1>
-			</TitleContainer>
 			<CardContainer>
 				{loading ? (
 					<p>Loading...</p>

@@ -16,5 +16,6 @@ export const TitleContainer = styled.div`
 	height: 100%;
 	img {
 		width: 100px;
+		border-radius: 15px;
 	}
 `;

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { useAuth } from "../hooks/AuthContext";
 
 export const ReviewForm = ({ org_id }) => {
+	const { userData } = useAuth();
+
 	const [newReview, setNewReview] = useState({
 		org_id: org_id,
 		subject: "",
 		comment: "Ikke gyldig",
 		num_stars: 1,
 		date: new Date().toISOString(),
-		user_id: 1,
+		user_id: userData.id,
 	});
 
 	const handleReviewInputChange = (e) => {

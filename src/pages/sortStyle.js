@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import lookingGlassIcon from "../assets/Layout/icon-search.svg";
-import bgImage from "../assets/Layout/bg-waves-1.svg";
 
 export const MainContainer = styled.main``;
 

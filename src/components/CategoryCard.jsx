@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { Arrow, CardContainer, TitleContainer } from "./categoryCardStyle";
+import {
+	Arrow,
+	CardContainer,
+	Icon,
+	TitleContainer,
+} from "./categoryCardStyle";
 import DownArrow from "../assets/Arrow-Down.png";
 import UpArrow from "../assets/Arrow-Up.png";
 
-export const CategoryCard = ({ id, title, img, icon }) => {
+export const CategoryCard = ({ id, title, img, icon, categories }) => {
 	const [expanded, setExpanded] = useState(false);
-
 	const toggleExpanded = () => {
 		setExpanded(!expanded);
 	};
@@ -13,16 +17,19 @@ export const CategoryCard = ({ id, title, img, icon }) => {
 	return (
 		<CardContainer key={id} expanded={expanded} onClick={toggleExpanded}>
 			<TitleContainer>
-				<img src={icon} alt="" />
+				<Icon src={icon} alt="" />
 				<h2>{title}</h2>
+				<Arrow
+					src={expanded ? UpArrow : DownArrow}
+					alt="Arrow"
+					className="arrow"
+				/>
+				<img src={img} alt="" srcset="" />
 			</TitleContainer>
-			<Arrow
-				src={expanded ? UpArrow : DownArrow}
-				alt="Arrow"
-				className="arrow"
-			/>
+
 			{expanded && (
 				<div className="expanded-content">
+					{console.log(categories)}
 					{/* Expanded content placeholder */}
 					add content pls
 				</div>

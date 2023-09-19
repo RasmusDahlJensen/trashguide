@@ -15,6 +15,9 @@ export const CardContainer = styled.div`
 	&:hover {
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 	}
+	h2 {
+		user-select: none;
+	}
 `;
 
 export const TitleContainer = styled.div`
@@ -22,10 +25,6 @@ export const TitleContainer = styled.div`
 	align-items: center;
 	gap: 30px;
 	padding: 10px;
-	img {
-		width: 100px;
-		border-radius: 15px;
-	}
 `;
 
 export const ArrowContainer = styled.div`
@@ -34,8 +33,10 @@ export const ArrowContainer = styled.div`
 `;
 
 export const Arrow = styled.img`
-	position: sticky;
-
 	width: 40px;
 	height: 40px;
+`;
+export const Icon = styled.img`
+	width: 100px;
+	border-radius: 15px;
 `;

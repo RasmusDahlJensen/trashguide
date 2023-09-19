@@ -26,7 +26,7 @@ export const Sorting = () => {
 
 				setProductArr(data);
 				setLoading(false);
-				console.log(data);
+				// console.log(data);
 			} catch (error) {
 				console.error("Error fetching data: ", error);
 				setLoading(false);

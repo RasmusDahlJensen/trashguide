@@ -23,7 +23,7 @@ export const SectionDetail = () => {
 
 				setProductData(data);
 				setLoading(false);
-				console.log(data);
+				// console.log(data);
 			} catch (error) {
 				console.error("Error fetching data: ", error);
 				setLoading(false);
@@ -52,6 +52,7 @@ export const SectionDetail = () => {
 								title={category.title}
 								icon={category.icon_filepath}
 								img={category.image_filepath}
+								categories={category.categories}
 							/>
 						))}
 					</CardContainer>

@@ -17,7 +17,8 @@ export const Recycling = () => {
 			.then((response) => {
 				const orgs = response.data;
 				setOrgData(orgs);
-				
+				console.log(orgs);
+
 				//Create an array of promises to fetch rating for each organisation
 				const ratingPromises = orgs.map((org) => {
 					return axios
@@ -28,7 +29,6 @@ export const Recycling = () => {
 								`Error fetching rating data for org ID ${org.id}: `,
 								error
 							);
-							return null;
 						});
 				});
 
@@ -43,6 +43,7 @@ export const Recycling = () => {
 					//Take the results and put it in the setRatings state
 					setRatings(ratingsObject);
 					setLoading(false);
+					console.log(ratingsObject);
 				});
 			})
 			.catch((error) => {
@@ -104,12 +105,13 @@ export const Recycling = () => {
 			) : (
 				orgData.map((org) => (
 					<CardContainer key={org.id} onClick={() => navigateDetail(org.id)}>
-						<GoogleMaps orgId={org.id} height={"100%"} width={"200px"} />{" "}
+						<GoogleMaps orgId={org.id} height={"100%"} width={"200px"} />
 						<h2>{org.name}</h2>
 						<p>
 							{org.address} {org.zipcode} {org.city}
 						</p>
 						<p>{calculateAverageRating(org.id)}</p>
+						<p>{ratings[org.id].length}</p>
 					</CardContainer>
 				))
 			)}

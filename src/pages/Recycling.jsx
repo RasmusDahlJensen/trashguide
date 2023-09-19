@@ -103,7 +103,7 @@ export const Recycling = () => {
 						{org.address} {org.zipcode} {org.city}
 					</p>
 					<p>{calculateAverageRating(org.id)}</p>
-					<GoogleMaps />
+					<GoogleMaps orgId={org.id} />
 				</div>
 			))}
 			<Outlet />

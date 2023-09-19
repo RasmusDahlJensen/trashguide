@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../hooks/AuthContext";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import {
 	FormButton,
 	FormContainer,
@@ -15,6 +16,7 @@ export const Login = () => {
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const { login } = useAuth();
+	const navigate = useNavigate(); // Get the navigate function
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -26,10 +28,13 @@ export const Login = () => {
 			});
 
 			if (response.status === 200) {
+				console.log(response.data);
 				const { access_token, user } = response.data;
 				login(access_token, user);
 
 				setErrorMessage("");
+
+				navigate("/");
 			}
 		} catch (error) {
 			console.error("Login error:", error);
@@ -73,7 +78,7 @@ export const Login = () => {
 					/>
 				</InputContainer>
 				<FormButton type="button" onClick={handleSubmit}>
-					Log ind
+					LOGIN
 				</FormButton>
 			</FormContainer>
 		</MainContainer>

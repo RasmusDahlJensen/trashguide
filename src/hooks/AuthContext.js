@@ -18,7 +18,6 @@ export function AuthProvider({ children }) {
 	const login = (access_token, user) => {
 		localStorage.setItem("access_token", access_token);
 		setUserData(user);
-		console.log(user);
 		setIsLoggedIn(true);
 	};
 

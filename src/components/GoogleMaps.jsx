@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import axios from "axios";
 
-const GoogleMaps = (orgId) => {
+const GoogleMaps = ({ orgId }) => {
 	const [orgDetails, setOrgDetails] = useState({});
 	useEffect(() => {
-		console.log(orgId);
-		// Fetch organization details using orgId
+		// console.log(orgId);
 		axios
 			.get(`http://localhost:3000/orgs/${orgId}`)
 			.then((response) => {
@@ -25,8 +24,8 @@ const GoogleMaps = (orgId) => {
 		height: "200px",
 	};
 	const center = {
-		lat: 7.2905715,
-		lng: 80.6337262,
+		lat: orgDetails.latitude,
+		lng: orgDetails.longtitude,
 	};
 
 	const mapOptions = {

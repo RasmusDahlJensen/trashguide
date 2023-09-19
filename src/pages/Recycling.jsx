@@ -12,13 +12,11 @@ export const Recycling = () => {
 
 	useEffect(() => {
 		axios
-			//Fetch organisation data
 			.get("http://localhost:3000/orgs?attributes=id,name,address,zipcode,city")
 			.then((response) => {
 				const orgs = response.data;
 				setOrgData(orgs);
 
-				//Create an array of promises to fetch rating for each organisation
 				const ratingPromises = orgs.map((org) => {
 					return axios
 						.get(`http://localhost:3000/reviews/${org.id}`)
@@ -31,53 +29,42 @@ export const Recycling = () => {
 							return null;
 						});
 				});
-				//Using promise.alæl to wait for all promises to resolve
-				Promise.all(ratingPromises).then((ratingsData) => {
-					const ratingsObject = {};
-					//Fill an object with each OrgID and their ratings
-					ratingsData.forEach(({ orgId, rating }) => {
-						ratingsObject[orgId] = rating;
+
+				Promise.all(ratingPromises)
+					.then((ratingsData) => {
+						const ratingsObject = {};
+						ratingsData.forEach(({ orgId, rating }) => {
+							ratingsObject[orgId] = rating;
+						});
+						setRatings(ratingsObject);
+					})
+					.finally(() => {
+						setLoading(false); // Set loading to false when data fetching is done
 					});
-					//Take the results and put it in the setRatings state
-					setRatings(ratingsObject);
-					setLoading(false);
-				});
 			})
 			.catch((error) => {
 				console.error("Error fetching organization data: ", error);
+				setLoading(false); // Set loading to false on error too
 			});
 	}, []);
 
-	//Function to calculate the average rating of each organisation.
-	//Take the orgID as a parameter
 	const calculateAverageRating = (orgId) => {
-		//Look in the object for the organisation rating for the ID given in the paramter
 		const orgRatings = ratings[orgId];
 
-		//Check if orgRatings exist
 		if (!orgRatings) {
 			return "Ingen stjerner givet";
 		}
 
-		//Here we use reduce to calculate the total amount of stars an organisation has.
-		//This iterates over each instance of rating and adds it to the accumulator
 		const totalStars = orgRatings.reduce(
 			(acc, rating) => acc + rating.num_stars,
 			0
 		);
-		//Basic arithmetics to calculate the average rating based on the amount of stars
 		const averageRating = totalStars / orgRatings.length;
 
-		//Using a ternary operator we check first check if the averageRating isnt a number
-		//In which case the organisation doesnt have any reviews and we return  a message
-		//Otherwise we show the average numer of stars for the organisation
 		if (isNaN(averageRating)) {
 			return "Ingen stjerner givet";
 		}
 
-		//A for loop to determine how many full stars and how many empty stars
-		//it loops over the rating itself, and as the iterator is lower than the rating
-		//It'll add a full star, otherwise it'll add an empty star
 		const stars = [];
 		for (let i = 0; i < 5; i++) {
 			if (i < Math.floor(averageRating)) {
@@ -86,7 +73,7 @@ export const Recycling = () => {
 				stars.push(<img key={i} src={emptyStar} alt="Empty Star" />);
 			}
 		}
-		//Once the loop is finished it'll return the stars and display them on the site when its called
+
 		return stars;
 	};
 
@@ -98,7 +85,7 @@ export const Recycling = () => {
 
 	return (
 		<div>
-			{loading ? ( // Display a loading message while data is loading
+			{loading ? (
 				<div>Loading...</div>
 			) : (
 				orgData.map((org) => (
@@ -112,6 +99,7 @@ export const Recycling = () => {
 					</div>
 				))
 			)}
+
 			<Outlet />
 		</div>
 	);

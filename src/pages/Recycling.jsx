@@ -3,6 +3,7 @@ import axios from "axios";
 import { Outlet, useNavigate } from "react-router-dom";
 import fullStar from "../assets/fullStar.png";
 import emptyStar from "../assets/emptyStar.png";
+import GoogleMaps from "../components/GoogleMaps";
 
 export const Recycling = () => {
 	const [orgData, setOrgData] = useState([]);
@@ -102,6 +103,7 @@ export const Recycling = () => {
 						{org.address} {org.zipcode} {org.city}
 					</p>
 					<p>{calculateAverageRating(org.id)}</p>
+					<GoogleMaps />
 				</div>
 			))}
 			<Outlet />

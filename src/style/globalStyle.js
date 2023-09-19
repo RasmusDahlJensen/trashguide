@@ -17,7 +17,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: auto;
   }
 
-  h1, h2, h3, h4, p, a {
+  h1, h2, h3, h4, p, a, button {
     font-family: 'Open Sans', sans-serif; 
   }
 `;

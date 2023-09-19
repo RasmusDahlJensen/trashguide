@@ -11,7 +11,6 @@ export const HeaderContainer = styled.header`
 	.active {
 		color: ${(props) => props.theme.fontHightlight};
 	}
-	//Add border height
 	.active::before {
 		content: "";
 		position: absolute;
@@ -22,6 +21,15 @@ export const HeaderContainer = styled.header`
 		background-color: ${(props) => props.theme.fontHightlight};
 	}
 
+	button {
+		border: none;
+		background-color: white;
+		text-decoration: none;
+		color: black;
+		position: relative;
+		font-size: 18px;
+		font-weight: 300;
+	}
 	/* Media Query for mobile */
 	@media (max-width: 1150px) {
 		text-align: center;

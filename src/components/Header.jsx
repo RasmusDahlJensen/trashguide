@@ -61,7 +61,8 @@ export const Header = () => {
 					<NavLink to="/purchase">Bestil holder</NavLink>
 				</NavItem>
 			</Nav>
-			{renderAuthButton()} {/* Render the login/logout button */}
+			{/* Render the login/logout button */}
+			{renderAuthButton()}
 		</HeaderContainer>
 	);
 };

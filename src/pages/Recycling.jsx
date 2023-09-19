@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 export const Recycling = () => {
 	const [orgData, setOrgData] = useState([]);
@@ -51,7 +51,7 @@ export const Recycling = () => {
 
 		//Check if orgRatings exist
 		if (!orgRatings) {
-			return "Ingen stjerner givet"; 
+			return "Ingen stjerner givet";
 		}
 
 		//Here we use reduce to calculate the total amount of stars an organisation has.
@@ -72,8 +72,8 @@ export const Recycling = () => {
 
 	const navigate = useNavigate();
 
-	const navigateDetail = (section_id) => {
-		navigate(`/recycling/${section_id}`);
+	const navigateDetail = (org_id) => {
+		navigate(`/recycling/${org_id}`);
 	};
 
 	return (
@@ -87,6 +87,7 @@ export const Recycling = () => {
 					<p>{calculateAverageRating(org.id)}</p>
 				</div>
 			))}
+			<Outlet />
 		</div>
 	);
 };

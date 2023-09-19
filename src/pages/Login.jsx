@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import {
 	FormButton,
 	FormContainer,
+	FormFlex,
+	FormImage,
 	FormInput,
 	InputContainer,
 	MainContainer,
@@ -48,38 +50,40 @@ export const Login = () => {
 
 	return (
 		<MainContainer>
-			<div>
+			<FormImage>
 				<img src={logo} alt="Logo" />
 
 				<p>Log ind på affaldsguiden for at anmelde stationer</p>
-			</div>
+			</FormImage>
 			<FormContainer>
 				<h1>Log ind</h1>
-				<InputContainer>
-					<FormInput
-						type="email"
-						id="username"
-						value={username}
-						placeholder="Email"
-						required
-						onChange={(event) => setUsername(event.target.value)}
-						hasError={errorMessage !== ""}
-					/>
-				</InputContainer>
-				<InputContainer>
-					<FormInput
-						type="password"
-						id="password"
-						placeholder="Kodeord"
-						value={password}
-						required
-						onChange={(event) => setPassword(event.target.value)}
-						hasError={errorMessage !== ""}
-					/>
-				</InputContainer>
-				<FormButton type="button" onClick={handleSubmit}>
-					LOGIN
-				</FormButton>
+				<FormFlex>
+					<div>
+						<FormInput
+							type="email"
+							id="username"
+							value={username}
+							placeholder="Email"
+							required
+							onChange={(event) => setUsername(event.target.value)}
+							hasError={errorMessage !== ""}
+						/>
+					</div>
+					<div>
+						<FormInput
+							type="password"
+							id="password"
+							placeholder="Kodeord"
+							value={password}
+							required
+							onChange={(event) => setPassword(event.target.value)}
+							hasError={errorMessage !== ""}
+						/>
+					</div>
+					<FormButton type="button" onClick={handleSubmit}>
+						Log ind
+					</FormButton>
+				</FormFlex>
 			</FormContainer>
 		</MainContainer>
 	);

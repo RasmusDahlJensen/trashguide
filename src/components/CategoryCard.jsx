@@ -14,6 +14,8 @@ import axios from "axios"; // Import Axios for making API requests
 export const CategoryCard = ({ id, title, img, icon }) => {
 	const [expanded, setExpanded] = useState(false);
 	const [categoryData, setCategoryData] = useState(null); // To store category data
+	const [allowedTypes, setAllowedTypes] = useState([]);
+	const [notAllowedTypes, setNotAllowedTypes] = useState([]);
 
 	const toggleExpanded = () => {
 		setExpanded(!expanded);
@@ -26,13 +28,19 @@ export const CategoryCard = ({ id, title, img, icon }) => {
 					`http://localhost:3000/category/details/${id}`
 				);
 				const data = response.data;
-				// console.log(data);
+
+				const allowed = data.types.filter((data) => data.rules.is_allowed);
+				const notAllowed = data.types.filter((data) => !data.rules.is_allowed);
+				setAllowedTypes(allowed);
+				setNotAllowedTypes(notAllowed);
+
 				setCategoryData(data);
 			} catch (error) {
 				console.error("Error fetching category data: ", error);
 			}
 		};
 
+		// Fetch category data when the component mounts
 		fetchCategoryData();
 	}, [id]);
 
@@ -55,11 +63,22 @@ export const CategoryCard = ({ id, title, img, icon }) => {
 					{/* Display the fetched category data */}
 					{categoryData ? (
 						<>
-							<ul>
-								{categoryData.types.map((type, index) => (
-									<li key={index}>{type.title}</li>
-								))}
-							</ul>
+							<div>
+								<h3>Hvad modtager vi?</h3>
+								<ul>
+									{allowedTypes.map((type) => (
+										<li key={type.id}>{type.title}</li>
+									))}
+								</ul>
+							</div>
+							<div>
+								<h3>Hvad modtager vi ikke?</h3>
+								<ul>
+									{notAllowedTypes.map((type) => (
+										<li key={type.id}>{type.title}</li>
+									))}
+								</ul>
+							</div>
 						</>
 					) : (
 						<p>Loading category data...</p>

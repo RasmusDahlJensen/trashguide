@@ -15,6 +15,7 @@ import emptyStar from "../assets/emptyStar.png";
 import { StarRating } from "./StarRating";
 import { useAuth } from "../hooks/AuthContext";
 import { Login } from "../pages/Login";
+import { LoginForm } from "./LoginForm";
 
 export const RecyclingDetails = () => {
 	const [orgData, setOrgData] = useState();
@@ -163,6 +164,7 @@ export const RecyclingDetails = () => {
 						) : (
 							<TextBoxContainer>
 								<p>Du skal være logget ind for at skrive en anmeldelse</p>
+								<LoginForm />
 							</TextBoxContainer>
 						)}
 					</TextArea>

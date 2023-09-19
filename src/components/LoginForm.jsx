@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FormButton, FormFlex, FormInput } from "../pages/loginStyle";
 import { useAuth } from "../hooks/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 export const LoginForm = () => {
@@ -9,8 +9,9 @@ export const LoginForm = () => {
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const { login } = useAuth();
-	const navigate = useNavigate(); // Get the navigate function
-    
+	const navigate = useNavigate();
+	const location = useLocation();
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -24,10 +25,11 @@ export const LoginForm = () => {
 				console.log(response.data);
 				const { access_token, user } = response.data;
 				login(access_token, user);
-
 				setErrorMessage("");
 
-				navigate("/");
+				if (location.pathname === "/login") {
+					navigate("/");
+				}
 			}
 		} catch (error) {
 			console.error("Login error:", error);

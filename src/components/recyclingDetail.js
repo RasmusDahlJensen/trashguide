@@ -36,7 +36,7 @@ export const ReviewCard = styled.div`
 `;
 
 export const TextBoxContainer = styled.div`
-	background-color: ${(props) => props.theme.secondaryColor};
+	background-color: ${(props) => props.theme.fontHightlight};
 	padding: 30px 20px 40px 20px;
 	text-align: center;
 	p {

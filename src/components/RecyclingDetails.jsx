@@ -1,7 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MainContainer } from "./recyclingDetail";
+import {
+	MainContainer,
+	RecycleDetails,
+	ReviewCard,
+	ReviewContainer,
+} from "./recyclingDetail";
 import GoogleMaps from "./GoogleMaps";
 import fullStar from "../assets/fullStar.png";
 import emptyStar from "../assets/emptyStar.png";
@@ -81,17 +86,32 @@ export const RecyclingDetails = () => {
 			) : (
 				<>
 					<GoogleMaps orgId={org_id} height={"100%"} width={"400px"} />
-					<div>{orgData.name}</div>
-					<div>
-						{/* Pass the reviewData directly to the StarRating component */}
-						<StarRating orgId={org_id} />
-					</div>
-					<div>{orgData.address}</div>
-					<div>
-						<div>{orgData.zipcode}</div>
-						<div>{orgData.city}</div>
-					</div>
-					<div>{orgData.country}</div>
+					<RecycleDetails>
+						<div>{orgData.name}</div>
+						<div>
+							{/* Pass the reviewData directly to the StarRating component */}
+							<StarRating orgId={org_id} />
+						</div>
+						<div>{orgData.address}</div>
+						<div>
+							<div>{orgData.zipcode}</div>
+							<div>{orgData.city}</div>
+						</div>
+						<div>{orgData.country}</div>
+					</RecycleDetails>
+					<ReviewContainer>
+						{reviewData.map((review) => {
+							return (
+								<ReviewCard>
+									<div>{review.user.firstname}</div>
+									<div>{review.user.lastname}</div>
+									<div>{review.num_stars}</div>
+
+									<div>{review.subject}</div>
+								</ReviewCard>
+							);
+						})}
+					</ReviewContainer>
 				</>
 			)}
 		</MainContainer>

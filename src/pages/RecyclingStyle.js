@@ -17,6 +17,7 @@ export const CardContainer = styled.div`
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 	border-radius: 15px;
 	overflow: hidden;
+	cursor: pointer;
 	figure {
 		margin: 0;
 		padding: 0;

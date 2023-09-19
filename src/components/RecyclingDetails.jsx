@@ -60,24 +60,25 @@ export const RecyclingDetails = () => {
 		}
 	}, [orgData, reviewData]);
 
-	// //a lesser version of the component as I dont need the averaging feature.
-	// const ReviewRating = ({ rating }) => {
-	// 	// Check if numStars is a valid number
-	// 	if (isNaN(numStars)) {
-	// 		return "Ingen stjerner givet";
-	// 	}
-	// 	// Create an array of stars based on the numStars value
-	// 	const stars = [];
-	// 	for (let i = 0; i < 5; i++) {
-	// 		if (i < numStars) {
-	// 			stars.push(<img key={i} src={fullStar} alt="Full Star" />);
-	// 		} else {
-	// 			stars.push(<img key={i} src={emptyStar} alt="Empty Star" />);
-	// 		}
-	// 	}
+	//A lesser version of the component as I dont need the averaging feature.
+	const ReviewRating = (rating) => {
+		console.log(rating);
+		// Check if numStars is a valid number
+		if (isNaN(rating)) {
+			return "Ingen stjerner givet";
+		}
+		// Create an array of stars based on the numStars value
+		const stars = [];
+		for (let i = 0; i < 5; i++) {
+			if (i < rating) {
+				stars.push(<img key={i} src={fullStar} alt="Full Star" />);
+			} else {
+				stars.push(<img key={i} src={emptyStar} alt="Empty Star" />);
+			}
+		}
 
-	// 	return stars;
-	// };
+		return stars;
+	};
 
 	return (
 		<MainContainer>
@@ -89,7 +90,6 @@ export const RecyclingDetails = () => {
 					<RecycleDetails>
 						<div>{orgData.name}</div>
 						<div>
-							{/* Pass the reviewData directly to the StarRating component */}
 							<StarRating orgId={org_id} />
 						</div>
 						<div>{orgData.address}</div>
@@ -105,8 +105,7 @@ export const RecyclingDetails = () => {
 								<ReviewCard>
 									<div>{review.user.firstname}</div>
 									<div>{review.user.lastname}</div>
-									<div>{review.num_stars}</div>
-
+									<div>{ReviewRating(review.num_stars)}</div>
 									<div>{review.subject}</div>
 								</ReviewCard>
 							);

@@ -6,15 +6,18 @@ import {
 	DetailContainer,
 	TitleContainer,
 } from "./sectionDetailStyle";
-import { CategoryCard } from "./CategoryCard"; // Import the CategoryCard component
+import { CategoryCard } from "./CategoryCard";
 import { BackgroundImage } from "../pages/homeStyle";
 import bgImage from "../assets/Layout/bg-wave-1.svg";
 
 export const SectionDetail = () => {
+	//useParams to get the section_id
 	const { section_id } = useParams();
 	const [productData, setProductData] = useState();
 	const [loading, setLoading] = useState(true);
 
+	//Fetch data based on the section ID, which is determined which section I clicked on and extracted from
+	///useParams
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -23,6 +26,7 @@ export const SectionDetail = () => {
 				);
 				const data = response.data;
 
+				//Define the data and turn off loading afterwards to allow the component to render.
 				setProductData(data);
 				setLoading(false);
 				// console.log(data);
@@ -31,17 +35,18 @@ export const SectionDetail = () => {
 				setLoading(false);
 			}
 		};
-
 		fetchData();
 	}, [section_id]);
 
 	return (
 		<>
 			<DetailContainer>
+				{/* Display loading text if the data hasn't been fetched yet to stop rendering errors */}
 				{loading ? (
 					<p>Loading...</p>
 				) : (
 					<>
+						{/* Title and image */}
 						<TitleContainer color={productData.color}>
 							<h1>{productData.title}</h1>
 							<img src={productData.filepath} alt="" />
@@ -49,14 +54,8 @@ export const SectionDetail = () => {
 						<CardContainer>
 							{/* Map over the productData.categories array */}
 							{productData.categories.map((category) => (
-								<CategoryCard
-									key={category.id}
-									id={category.id}
-									title={category.title}
-									icon={category.icon_filepath}
-									img={category.image_filepath}
-									categories={category.categories}
-								/>
+								// Send the data as a prop to the category card
+								<CategoryCard key={category.id} categoryData={category} />
 							))}
 						</CardContainer>
 					</>

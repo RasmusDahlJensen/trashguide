@@ -4,8 +4,6 @@ import { SectionCard } from "../components/SectionCard";
 import {
 	BackgroundImage,
 	CardContainer,
-	DoubleImage,
-	GradientContainer,
 	MainContainer,
 	SearchBar,
 	TitleContainer,
@@ -18,12 +16,14 @@ export const Sorting = () => {
 	const [loading, setLoading] = useState(true);
 	const [searchQuery, setSearchQuery] = useState("");
 
+	//Fetch section data
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get("http://localhost:3000/section");
 				const data = response.data;
 
+				//Set the data in the state and then stop loading to the data can render
 				setProductArr(data);
 				setLoading(false);
 				// console.log(data);
@@ -36,12 +36,12 @@ export const Sorting = () => {
 		fetchData();
 	}, []);
 
-	// Handle inputs
+	// Change the state with the input that's put in the search bar
 	const handleSearchInputChange = (event) => {
 		setSearchQuery(event.target.value);
 	};
 
-	// Item filter based on search
+	// Item filter based on search state data
 	const filteredProductArr = productArr.filter((product) =>
 		product.title.toLowerCase().includes(searchQuery.toLowerCase())
 	);
@@ -60,6 +60,8 @@ export const Sorting = () => {
 					/>
 				</TitleContainer>
 				<CardContainer>
+					{/* Show filtered items, if none is found dispaly error message */}
+					{/* If nothing is typed it it'll display the entire array */}
 					{loading ? (
 						<p>Loading...</p>
 					) : filteredProductArr.length === 0 ? (

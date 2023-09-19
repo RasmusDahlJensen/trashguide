@@ -35,39 +35,21 @@ export const Header = () => {
 			</MobileMenuButton>
 
 			{/* Navigation Menu */}
+			{/* Determines whether or not the burger menu should be displayed or not in the CSS */}
 			<Nav className={isMobileMenuOpen ? "show" : ""}>
 				<NavItem>
-					<NavLink
-						exact
-						to="/"
-						activeClassName="active-link" // Add this line
-					>
+					<NavLink exact to="/">
 						Forside
 					</NavLink>
 				</NavItem>
 				<NavItem>
-					<NavLink
-						to="/sorting"
-						activeClassName="active-link" // Add this line
-					>
-						Sortering
-					</NavLink>
+					<NavLink to="/sorting">Sortering</NavLink>
 				</NavItem>
 				<NavItem>
-					<NavLink
-						to="/recycling"
-						activeClassName="active-link" // Add this line
-					>
-						Genbrugsstationer
-					</NavLink>
+					<NavLink to="/recycling">Genbrugsstationer</NavLink>
 				</NavItem>
 				<NavItem>
-					<NavLink
-						to="/purchase"
-						activeClassName="active-link" // Add this line
-					>
-						Bestil holder
-					</NavLink>
+					<NavLink to="/purchase">Bestil holder</NavLink>
 				</NavItem>
 			</Nav>
 			<NavLink to="/login">LOGIN</NavLink>

@@ -18,13 +18,15 @@ export const Slideshow = () => {
 		"http://localhost:3000/Assets/Images/slideshow/malerspande.jpg",
 	];
 
-	// Function to navigate to the next slide
+	//These two functions are used to navigate to the next and previous slides
+	//nextSlide increments the currentSlide index to determine which image in the array to show
+	//Using the modulo operator to create a loop
 	const nextSlide = () => {
-		//Reset the slides when it gets to the last slide
 		setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
 	};
-
-	// Function to navigate to the previous slide
+	//prevSlide decrements the index to again determine which image in the array to show
+	//The looping behaviour here is different, if we try and go negative we set the index to 2 which is
+	//length - 1 because length is 3
 	const prevSlide = () => {
 		setCurrentSlide((prevSlide) =>
 			prevSlide === 0 ? images.length - 1 : prevSlide - 1
@@ -36,14 +38,14 @@ export const Slideshow = () => {
 		// Set an interval to call nextSlide every 1000 milliseconds (10 seconds)
 		const interval = setInterval(nextSlide, 10000);
 
-		// Cleanup function: Clear the interval when the component unmounts
+		//Clear interval to unmount and reset the timer
 		return () => clearInterval(interval);
 	}, []);
 
 	return (
 		// SlideshowContainer: A container for the entire slideshow
 		<SlideshowContainer>
-			{/* ControlButton for navigating to the previous slide */}
+			{/* ControlButton for navigating to the previous slide  using the decrement function*/}
 			<ControlButton onClick={prevSlide} direction="prev">
 				<img src={leftArrow} alt="" srcset="" />
 			</ControlButton>
@@ -52,7 +54,7 @@ export const Slideshow = () => {
 				src={images[currentSlide]}
 				alt={`Slide ${currentSlide + 1}`}
 			/>
-			{/* ControlButton for navigating to the next slide */}
+			{/* ControlButton for navigating to the next slide using the increment function */}
 			<ControlButton onClick={nextSlide} direction="next">
 				<img src={rightArrow} alt="" srcset="" />
 			</ControlButton>

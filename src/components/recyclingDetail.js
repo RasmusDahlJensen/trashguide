@@ -11,10 +11,17 @@ export const MainContainer = styled.main`
 export const RecycleDetails = styled.div`
 	padding: 25px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	img {
+		width: 25px;
+	}
 `;
 
 export const ReviewContainer = styled.div`
 	padding: 25px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 15px;
 `;
 
 export const ReviewCard = styled.div`
@@ -23,4 +30,7 @@ export const ReviewCard = styled.div`
 	padding: 10px;
 	width: 300px;
 	height: 100%;
+	img {
+		width: 25px;
+	}
 `;

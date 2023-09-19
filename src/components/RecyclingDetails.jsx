@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
+	CityContainer,
 	MainContainer,
 	RecycleDetails,
 	ReviewCard,
@@ -55,14 +56,14 @@ export const RecyclingDetails = () => {
 	useEffect(() => {
 		if (orgData && reviewData) {
 			setLoading(false);
-			console.log("Orgdata:", orgData, "ReviewData", reviewData);
+			// console.log("Orgdata:", orgData, "ReviewData", reviewData);
 			// console.log("loading complete");
 		}
 	}, [orgData, reviewData]);
 
 	//A lesser version of the component as I dont need the averaging feature.
 	const ReviewRating = (rating) => {
-		console.log(rating);
+		// console.log(rating);
 		// Check if numStars is a valid number
 		if (isNaN(rating)) {
 			return "Ingen stjerner givet";
@@ -88,25 +89,25 @@ export const RecyclingDetails = () => {
 				<>
 					<GoogleMaps orgId={org_id} height={"100%"} width={"400px"} />
 					<RecycleDetails>
-						<div>{orgData.name}</div>
+						<h2>{orgData.name}</h2>
 						<div>
 							<StarRating orgId={org_id} />
 						</div>
-						<div>{orgData.address}</div>
-						<div>
-							<div>{orgData.zipcode}</div>
-							<div>{orgData.city}</div>
-						</div>
-						<div>{orgData.country}</div>
+						<p>{orgData.address}</p>
+						<p>
+							{orgData.zipcode} {orgData.city}
+						</p>
+						<p>{orgData.country}</p>
 					</RecycleDetails>
 					<ReviewContainer>
 						{reviewData.map((review) => {
 							return (
 								<ReviewCard>
-									<div>{review.user.firstname}</div>
-									<div>{review.user.lastname}</div>
+									<p>
+										{review.user.firstname} {review.user.lastname}
+									</p>
 									<div>{ReviewRating(review.num_stars)}</div>
-									<div>{review.subject}</div>
+									<p>{review.subject}</p>
 								</ReviewCard>
 							);
 						})}

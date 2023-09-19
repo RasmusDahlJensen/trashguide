@@ -84,7 +84,7 @@ export const RecyclingDetails = () => {
 					<div>{orgData.name}</div>
 					<div>
 						{/* Pass the reviewData directly to the StarRating component */}
-						<StarRating orgId={org_id} ratings={reviewData} />
+						<StarRating orgId={org_id} />
 					</div>
 					<div>{orgData.address}</div>
 					<div>

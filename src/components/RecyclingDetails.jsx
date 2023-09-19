@@ -106,7 +106,7 @@ export const RecyclingDetails = () => {
 					</RecycleDetails>
 					<TextArea>
 						{isLoggedIn ? (
-							<ReviewForm />
+							<ReviewForm org_id={org_id} />
 						) : (
 							<TextBoxContainer>
 								<p>Du skal være logget ind for at skrive en anmeldelse</p>

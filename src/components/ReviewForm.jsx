@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-export const ReviewForm = () => {
+export const ReviewForm = ({ org_id }) => {
 	const [newReview, setNewReview] = useState({
-		event_id: 1,
+		org_id: org_id,
 		subject: "",
 		comment: "Ikke gyldig",
 		num_stars: 1,
@@ -28,7 +28,7 @@ export const ReviewForm = () => {
 				return;
 			}
 
-			const response = await fetch("http://localhost:4000/reviews", {
+			const response = await fetch("http://localhost:3000/reviews", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

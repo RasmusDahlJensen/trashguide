@@ -1,25 +1,44 @@
 import fullStar from "../assets/fullStar.png";
 import emptyStar from "../assets/emptyStar.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 //Function to calculate the average rating of each organisation.
 //Take the orgID and ratings as a parameter
-export const StarRating = ({ orgId, ratings }) => {
-	//Look in the object for the organisation rating for the ID given in the paramter
-	const orgRatings = ratings[orgId];
+export const StarRating = ({ orgId }) => {
+	const [ratings, setRatings] = useState([]);
+	const [loading, setLoading] = useState(true);
 
-	//Check if orgRatings exist
-	if (!orgRatings) {
+	// Fetch reviews for the organization when the component mounts
+	useEffect(() => {
+		axios
+			.get(`http://localhost:3000/reviews/${orgId}`)
+			.then((response) => {
+				setRatings(response.data);
+				setLoading(false);
+			})
+			.catch((error) => {
+				console.error("Error fetching reviews: ", error);
+				setLoading(false);
+			});
+	}, [orgId]);
+
+	// If still loading, display a loading message
+	if (loading) {
+		return <div>Loading...</div>;
+	}
+
+	// If there are no ratings, display a message
+	if (!ratings) {
 		return "Ingen stjerner givet";
 	}
 
 	//Here we use reduce to calculate the total amount of stars an organisation has.
 	//This iterates over each instance of rating and adds it to the accumulator
-	const totalStars = orgRatings.reduce(
-		(acc, rating) => acc + rating.num_stars,
-		0
-	);
+	const totalStars = ratings.reduce((acc, rating) => acc + rating.num_stars, 0);
+
 	//Basic arithmetics to calculate the average rating based on the amount of stars
-	const averageRating = totalStars / orgRatings.length;
+	const averageRating = totalStars / ratings.length;
 
 	//Checking if the rating isnt a number, in which case it'll give a message there's no reviews
 	if (isNaN(averageRating)) {

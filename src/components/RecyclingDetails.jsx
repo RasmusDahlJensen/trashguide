@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MainContainer, MapsContainer } from "./recyclingDetail";
+import { MainContainer } from "./recyclingDetail";
 import GoogleMaps from "./GoogleMaps";
+import fullStar from "../assets/fullStar.png";
+import emptyStar from "../assets/emptyStar.png";
+import { StarRating } from "./StarRating";
 
 export const RecyclingDetails = () => {
 	const [orgData, setOrgData] = useState();
@@ -52,18 +55,43 @@ export const RecyclingDetails = () => {
 		}
 	}, [orgData, reviewData]);
 
+	// //a lesser version of the component as I dont need the averaging feature.
+	// const ReviewRating = ({ rating }) => {
+	// 	// Check if numStars is a valid number
+	// 	if (isNaN(numStars)) {
+	// 		return "Ingen stjerner givet";
+	// 	}
+	// 	// Create an array of stars based on the numStars value
+	// 	const stars = [];
+	// 	for (let i = 0; i < 5; i++) {
+	// 		if (i < numStars) {
+	// 			stars.push(<img key={i} src={fullStar} alt="Full Star" />);
+	// 		} else {
+	// 			stars.push(<img key={i} src={emptyStar} alt="Empty Star" />);
+	// 		}
+	// 	}
+
+	// 	return stars;
+	// };
+
 	return (
 		<MainContainer>
 			{loading ? (
 				<div>Loading...</div>
 			) : (
 				<>
-					<>
-						<GoogleMaps orgId={org_id} height={"100%"} width={"400px"} />
-					</>
+					<GoogleMaps orgId={org_id} height={"100%"} width={"400px"} />
+					<div>{orgData.name}</div>
 					<div>
-						
+						{/* Pass the reviewData directly to the StarRating component */}
+						<StarRating orgId={org_id} ratings={reviewData} />
 					</div>
+					<div>{orgData.address}</div>
+					<div>
+						<div>{orgData.zipcode}</div>
+						<div>{orgData.city}</div>
+					</div>
+					<div>{orgData.country}</div>
 				</>
 			)}
 		</MainContainer>

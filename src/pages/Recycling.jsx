@@ -81,7 +81,7 @@ export const Recycling = () => {
 								</p>
 								<RatingContainer>
 									<figure>
-										<StarRating orgId={org.id} ratings={ratings} />{" "}
+										<StarRating orgId={org.id} />
 									</figure>
 									<p>({ratings[org.id]?.length} anmeldelser)</p>
 								</RatingContainer>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { MainContainer } from "./recyclingDetail";
 
 export const RecyclingDetails = () => {
 	const [orgData, setOrgData] = useState();
@@ -50,5 +51,9 @@ export const RecyclingDetails = () => {
 		}
 	}, [orgData, reviewData]);
 
-	return <div>{loading ? <div>Loading...</div> : <div>{org_id}</div>}</div>;
+	return (
+		<MainContainer>
+			{loading ? <div>Loading...</div> : <div>{org_id}</div>}
+		</MainContainer>
+	);
 };

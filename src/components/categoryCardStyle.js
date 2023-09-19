@@ -23,8 +23,15 @@ export const CardContainer = styled.div`
 export const TitleContainer = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	gap: 30px;
 	padding: 10px;
+`;
+
+export const CardFlex = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 50px;
 `;
 
 export const ArrowContainer = styled.div`
@@ -38,5 +45,10 @@ export const Arrow = styled.img`
 `;
 export const Icon = styled.img`
 	width: 100px;
+	border-radius: 15px;
+`;
+
+export const CatImg = styled.img`
+	height: 100%;
 	border-radius: 15px;
 `;

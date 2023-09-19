@@ -34,3 +34,18 @@ export const ReviewCard = styled.div`
 		width: 25px;
 	}
 `;
+
+export const TextBoxContainer = styled.div`
+	background-color: ${(props) => props.theme.secondaryColor};
+	padding: 30px 20px 40px 20px;
+	text-align: center;
+	p {
+		color: white;
+		font-size: 24px;
+		margin: 0 0 15px 0;
+	}
+`;
+
+export const TextArea = styled.div`
+	margin: 15px 0 15px 0;
+`;

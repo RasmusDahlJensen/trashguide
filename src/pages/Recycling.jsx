@@ -54,7 +54,7 @@ export const Recycling = () => {
 				});
 			})
 			.catch((error) => {
-				console.error("Error fetching organization data: ", error);
+				console.error("Organization data: ", error);
 				setLoading(false);
 			});
 	}, []);

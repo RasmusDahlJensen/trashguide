@@ -2,7 +2,7 @@ import fullStar from "../assets/fullStar.png";
 import emptyStar from "../assets/emptyStar.png";
 
 //Function to calculate the average rating of each organisation.
-//Take the orgID as a parameter
+//Take the orgID and ratings as a parameter
 export const StarRating = ({ orgId, ratings }) => {
 	//Look in the object for the organisation rating for the ID given in the paramter
 	const orgRatings = ratings[orgId];

@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MainContainer } from "./recyclingDetail";
+import { MainContainer, MapsContainer } from "./recyclingDetail";
+import GoogleMaps from "./GoogleMaps";
 
 export const RecyclingDetails = () => {
 	const [orgData, setOrgData] = useState();
@@ -53,7 +54,18 @@ export const RecyclingDetails = () => {
 
 	return (
 		<MainContainer>
-			{loading ? <div>Loading...</div> : <div>{org_id}</div>}
+			{loading ? (
+				<div>Loading...</div>
+			) : (
+				<>
+					<>
+						<GoogleMaps orgId={org_id} height={"100%"} width={"400px"} />
+					</>
+					<div>
+						
+					</div>
+				</>
+			)}
 		</MainContainer>
 	);
 };

@@ -26,9 +26,8 @@ export const Login = () => {
 			});
 
 			if (response.status === 200) {
-				console.log(response.data);
-				// const { access_token, user_id } = response.data;
-				// login(access_token, user_id);
+				const { access_token, user } = response.data;
+				login(access_token, user);
 
 				setErrorMessage("");
 			}

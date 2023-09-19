@@ -15,6 +15,7 @@ import emptyStar from "../assets/emptyStar.png";
 import { StarRating } from "./StarRating";
 import { useAuth } from "../hooks/AuthContext";
 import { LoginForm } from "./LoginForm";
+import { ReviewForm } from "./ReviewForm";
 
 export const RecyclingDetails = () => {
 	const [orgData, setOrgData] = useState();
@@ -22,14 +23,6 @@ export const RecyclingDetails = () => {
 	const [loading, setLoading] = useState(true);
 	const { org_id } = useParams();
 	const { isLoggedIn } = useAuth();
-	const [newReview, setNewReview] = useState({
-		event_id: 1,
-		subject: "",
-		comment: "Ikke gyldig",
-		num_stars: 1,
-		date: new Date().toISOString(),
-		user_id: 1,
-	});
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -93,39 +86,6 @@ export const RecyclingDetails = () => {
 		return stars;
 	};
 
-	const handleReviewInputChange = (e) => {
-		const { name, value } = e.target;
-		setNewReview({
-			...newReview,
-			[name]: value,
-		});
-	};
-
-	const handleReviewSubmit = async (e) => {
-		e.preventDefault();
-
-		try {
-			const accessToken = localStorage.getItem("access_token");
-
-			if (!accessToken) {
-				console.error("Access token not found in localStorage");
-				return;
-			}
-
-			const response = await fetch("http://localhost:4000/reviews", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${accessToken}`,
-				},
-				body: JSON.stringify(newReview),
-			});
-			window.location.reload(true);
-		} catch (error) {
-			console.error("Error posting review:", error);
-		}
-	};
-
 	return (
 		<MainContainer>
 			{loading ? (
@@ -146,21 +106,7 @@ export const RecyclingDetails = () => {
 					</RecycleDetails>
 					<TextArea>
 						{isLoggedIn ? (
-							<form onSubmit={handleReviewSubmit}>
-								<h3>Anmeldelse</h3>
-								<div>
-									<input
-										type="text"
-										id="subject"
-										name="subject"
-										placeholder="Comment"
-										value={newReview.subject}
-										onChange={handleReviewInputChange}
-										required
-									/>
-								</div>
-								<button type="submit">Indsend anmeldelse</button>
-							</form>
+							<ReviewForm />
 						) : (
 							<TextBoxContainer>
 								<p>Du skal være logget ind for at skrive en anmeldelse</p>

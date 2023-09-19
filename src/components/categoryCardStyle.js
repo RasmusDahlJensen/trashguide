@@ -46,11 +46,17 @@ export const Arrow = styled.img`
 export const Icon = styled.img`
 	width: 100px;
 	border-radius: 15px;
+	@media (max-width: 800px) {
+		display: none;
+	}
 `;
 
 export const CatImg = styled.img`
 	height: 100%;
 	border-radius: 15px;
+	@media (max-width: 800px) {
+		display: none;
+	}
 `;
 
 export const CategoryContainer = styled.div`

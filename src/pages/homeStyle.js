@@ -79,7 +79,7 @@ export const ArticleTitle = styled.div`
 		font-size: 44px;
 		font-weight: 400;
 		position: relative;
-		display: inline; /* Display the text inline */
+		display: inline;
 	}
 
 	h2::before,

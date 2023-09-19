@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Recycling = () => {
 	const [orgData, setOrgData] = useState([]);
@@ -48,6 +49,11 @@ export const Recycling = () => {
 		//Look in the object for the organisation rating for the ID given in the paramter
 		const orgRatings = ratings[orgId];
 
+		//Check if orgRatings exist
+		if (!orgRatings) {
+			return "Ingen stjerner givet"; 
+		}
+
 		//Here we use reduce to calculate the total amount of stars an organisation has.
 		//This iterates over each instance of rating and adds it to the accumulator
 		const totalStars = orgRatings.reduce(
@@ -64,10 +70,16 @@ export const Recycling = () => {
 			: `${Math.floor(averageRating)}`;
 	};
 
+	const navigate = useNavigate();
+
+	const navigateDetail = (section_id) => {
+		navigate(`/recycling/${section_id}`);
+	};
+
 	return (
 		<div>
 			{orgData.map((org) => (
-				<div key={org.id}>
+				<div key={org.id} onClick={() => navigateDetail(org.id)}>
 					<h2>{org.name}</h2>
 					<p>
 						{org.address} {org.zipcode} {org.city}

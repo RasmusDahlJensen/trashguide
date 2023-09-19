@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import {
+	AllowedContainer,
 	Arrow,
 	CardContainer,
 	CardFlex,
 	CatImg,
+	CatTitleContainer,
+	CategoryCardContainer,
+	CategoryContainer,
 	Icon,
+	NotAllowedContainer,
 	TitleContainer,
 } from "./categoryCardStyle";
 import DownArrow from "../assets/Arrow-Down.png";
 import UpArrow from "../assets/Arrow-Up.png";
-import axios from "axios"; // Import Axios for making API requests
+import axios from "axios";
 
 export const CategoryCard = ({ id, title, img, icon }) => {
 	const [expanded, setExpanded] = useState(false);
-	const [categoryData, setCategoryData] = useState(null); // To store category data
+	const [categoryData, setCategoryData] = useState(null);
 	const [allowedTypes, setAllowedTypes] = useState([]);
 	const [notAllowedTypes, setNotAllowedTypes] = useState([]);
 
@@ -40,7 +45,6 @@ export const CategoryCard = ({ id, title, img, icon }) => {
 			}
 		};
 
-		// Fetch category data when the component mounts
 		fetchCategoryData();
 	}, [id]);
 
@@ -63,22 +67,41 @@ export const CategoryCard = ({ id, title, img, icon }) => {
 					{/* Display the fetched category data */}
 					{categoryData ? (
 						<>
-							<div>
-								<h3>Hvad modtager vi?</h3>
-								<ul>
+							<CategoryContainer>
+								<CatTitleContainer>
+									<h3>Hvad modtager vi?</h3>
+								</CatTitleContainer>
+								<CategoryCardContainer>
 									{allowedTypes.map((type) => (
-										<li key={type.id}>{type.title}</li>
+										<AllowedContainer key={type.id}>
+											<h2>{type.title}</h2>
+											<p>
+												{type.rules.is_home
+													? "Det kan sorteres der hjemme"
+													: "Det kan ikke sorteres der hjemme"}
+											</p>
+											<p>
+												{type.rules.is_station
+													? "Det kan sorteres på stationen"
+													: "Det kan ikke sorteres på stationen"}
+											</p>
+										</AllowedContainer>
 									))}
-								</ul>
-							</div>
-							<div>
-								<h3>Hvad modtager vi ikke?</h3>
-								<ul>
+								</CategoryCardContainer>
+							</CategoryContainer>
+							<CategoryContainer>
+								<CatTitleContainer>
+									<h3>Hvad modtager vi ikke?</h3>
+								</CatTitleContainer>
+
+								<CategoryCardContainer>
 									{notAllowedTypes.map((type) => (
-										<li key={type.id}>{type.title}</li>
+										<NotAllowedContainer key={type.id}>
+											<h2>{type.title}</h2>
+										</NotAllowedContainer>
 									))}
-								</ul>
-							</div>
+								</CategoryCardContainer>
+							</CategoryContainer>
 						</>
 					) : (
 						<p>Loading category data...</p>

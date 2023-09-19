@@ -52,3 +52,34 @@ export const CatImg = styled.img`
 	height: 100%;
 	border-radius: 15px;
 `;
+
+export const CategoryContainer = styled.div`
+	padding: 50px;
+`;
+
+export const CatTitleContainer = styled.div`
+	border-bottom: 1px solid black;
+	text-align: center;
+	margin-bottom: 25px;
+`;
+
+export const AllowedContainer = styled.div`
+	border: 1px solid;
+	border-color: ${(props) => props.theme.tertiaryColor};
+	width: 300px;
+	text-align: center;
+	border-radius: 15px;
+`;
+
+export const CategoryCardContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+`;
+
+export const NotAllowedContainer = styled.div`
+	border: 1px solid red;
+	width: 300px;
+	text-align: center;
+	border-radius: 15px;
+`;

@@ -24,8 +24,8 @@ const GoogleMaps = ({ orgId }) => {
 		height: "200px",
 	};
 	const center = {
-		lat: orgDetails.latitude,
-		lng: orgDetails.longtitude,
+		lat: orgDetails.longtitude,
+		lng: orgDetails.latitude,
 	};
 
 	const mapOptions = {
@@ -48,7 +48,7 @@ const GoogleMaps = ({ orgId }) => {
 		<div>
 			<GoogleMap
 				mapContainerStyle={mapContainerStyle}
-				zoom={10}
+				zoom={15}
 				center={center}
 				options={mapOptions}
 			>

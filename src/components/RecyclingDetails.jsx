@@ -14,7 +14,6 @@ import fullStar from "../assets/fullStar.png";
 import emptyStar from "../assets/emptyStar.png";
 import { StarRating } from "./StarRating";
 import { useAuth } from "../hooks/AuthContext";
-import { Login } from "../pages/Login";
 import { LoginForm } from "./LoginForm";
 
 export const RecyclingDetails = () => {
@@ -119,6 +118,7 @@ export const RecyclingDetails = () => {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${accessToken}`,
 				},
+				body: JSON.stringify(newReview),
 			});
 			window.location.reload(true);
 		} catch (error) {

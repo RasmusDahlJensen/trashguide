@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Outlet, useNavigate } from "react-router-dom";
+import fullStar from "../assets/fullStar.png";
+import emptyStar from "../assets/emptyStar.png";
 
 export const Recycling = () => {
 	const [orgData, setOrgData] = useState([]);
@@ -62,12 +64,27 @@ export const Recycling = () => {
 		);
 		//Basic arithmetics to calculate the average rating based on the amount of stars
 		const averageRating = totalStars / orgRatings.length;
+
 		//Using a ternary operator we check first check if the averageRating isnt a number
 		//In which case the organisation doesnt have any reviews and we return  a message
 		//Otherwise we show the average numer of stars for the organisation
-		return isNaN(averageRating)
-			? "Ingen stjerner givet"
-			: `${Math.floor(averageRating)}`;
+		if (isNaN(averageRating)) {
+			return "Ingen stjerner givet";
+		}
+
+		//A for loop to determine how many full stars and how many empty stars
+		//it loops over the rating itself, and as the iterator is lower than the rating
+		//It'll add a full star, otherwise it'll add an empty star
+		const stars = [];
+		for (let i = 0; i < 5; i++) {
+			if (i < Math.floor(averageRating)) {
+				stars.push(<img key={i} src={fullStar} alt="Full Star" />);
+			} else {
+				stars.push(<img key={i} src={emptyStar} alt="Empty Star" />);
+			}
+		}
+		//Once the loop is finished it'll return the stars and display them on the site when its called
+		return stars;
 	};
 
 	const navigate = useNavigate();

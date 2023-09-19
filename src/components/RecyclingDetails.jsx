@@ -45,6 +45,7 @@ export const RecyclingDetails = () => {
 	useEffect(() => {
 		if (orgData && reviewData) {
 			setLoading(false);
+			console.log("Orgdata:", orgData, "ReviewData", reviewData);
 			// console.log("loading complete");
 		}
 	}, [orgData, reviewData]);

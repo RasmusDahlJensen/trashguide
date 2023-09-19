@@ -7,6 +7,8 @@ import {
 	TitleContainer,
 } from "./sectionDetailStyle";
 import { CategoryCard } from "./CategoryCard"; // Import the CategoryCard component
+import { BackgroundImage } from "../pages/homeStyle";
+import bgImage from "../assets/Layout/bg-wave-1.svg";
 
 export const SectionDetail = () => {
 	const { section_id } = useParams();
@@ -34,30 +36,33 @@ export const SectionDetail = () => {
 	}, [section_id]);
 
 	return (
-		<DetailContainer>
-			{loading ? (
-				<p>Loading...</p>
-			) : (
-				<>
-					<TitleContainer color={productData.color}>
-						<h1>{productData.title}</h1>
-						<img src={productData.filepath} alt="" />
-					</TitleContainer>
-					<CardContainer>
-						{/* Map over the productData.categories array */}
-						{productData.categories.map((category) => (
-							<CategoryCard
-								key={category.id}
-								id={category.id}
-								title={category.title}
-								icon={category.icon_filepath}
-								img={category.image_filepath}
-								categories={category.categories}
-							/>
-						))}
-					</CardContainer>
-				</>
-			)}
-		</DetailContainer>
+		<>
+			<DetailContainer>
+				{loading ? (
+					<p>Loading...</p>
+				) : (
+					<>
+						<TitleContainer color={productData.color}>
+							<h1>{productData.title}</h1>
+							<img src={productData.filepath} alt="" />
+						</TitleContainer>
+						<CardContainer>
+							{/* Map over the productData.categories array */}
+							{productData.categories.map((category) => (
+								<CategoryCard
+									key={category.id}
+									id={category.id}
+									title={category.title}
+									icon={category.icon_filepath}
+									img={category.image_filepath}
+									categories={category.categories}
+								/>
+							))}
+						</CardContainer>
+					</>
+				)}
+			</DetailContainer>
+			<BackgroundImage src={bgImage} alt="background artwork" />
+		</>
 	);
 };

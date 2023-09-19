@@ -115,17 +115,19 @@ export const RecyclingDetails = () => {
 						)}
 					</TextArea>
 					<ReviewContainer>
-						{reviewData.map((review) => {
-							return (
-								<ReviewCard>
+						{reviewData.length === 0 ? (
+							<p>Ingen kommentarer fundet</p>
+						) : (
+							reviewData.map((review) => (
+								<ReviewCard key={review.id}>
 									<p>
 										{review.user.firstname} {review.user.lastname}
 									</p>
 									<div>{ReviewRating(review.num_stars)}</div>
 									<p>{review.subject}</p>
 								</ReviewCard>
-							);
-						})}
+							))
+						)}
 					</ReviewContainer>
 				</>
 			)}

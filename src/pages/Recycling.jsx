@@ -4,7 +4,14 @@ import { Outlet, useNavigate } from "react-router-dom";
 import fullStar from "../assets/fullStar.png";
 import emptyStar from "../assets/emptyStar.png";
 import GoogleMaps from "../components/GoogleMaps";
-import { CardContainer, MainContainer } from "./RecyclingStyle";
+import {
+	CarContent,
+	CardContainer,
+	MainContainer,
+	RatingContainer,
+} from "./RecyclingStyle";
+import bgImage from "../assets/Layout/bg-wave-2.svg";
+import { BackgroundImage } from "./homeStyle";
 
 export const Recycling = () => {
 	const [orgData, setOrgData] = useState([]);
@@ -99,24 +106,31 @@ export const Recycling = () => {
 	};
 
 	return (
-		<MainContainer>
-			{loading ? (
-				<div>Loading...</div>
-			) : (
-				orgData.map((org) => (
-					<CardContainer key={org.id} onClick={() => navigateDetail(org.id)}>
-						<GoogleMaps orgId={org.id} height={"100%"} width={"200px"} />
-						<h2>{org.name}</h2>
-						<p>
-							{org.address} {org.zipcode} {org.city}
-						</p>
-						<p>{calculateAverageRating(org.id)}</p>
-						<p>{ratings[org.id].length}</p>
-					</CardContainer>
-				))
-			)}
+		<>
+			<MainContainer>
+				{loading ? (
+					<div>Loading...</div>
+				) : (
+					orgData.map((org) => (
+						<CardContainer key={org.id} onClick={() => navigateDetail(org.id)}>
+							<GoogleMaps orgId={org.id} height={"100%"} width={"200px"} />
+							<CarContent>
+								<h2>{org.name}</h2>
+								<p>
+									{org.address} {org.zipcode} {org.city}
+								</p>
+								<RatingContainer>
+									<figure>{calculateAverageRating(org.id)}</figure>
+									<p>({ratings[org.id].length} anmeldelser)</p>
+								</RatingContainer>
+							</CarContent>
+						</CardContainer>
+					))
+				)}
 
-			<Outlet />
-		</MainContainer>
+				<Outlet />
+			</MainContainer>
+			<BackgroundImage src={bgImage} alt="background artwork" />
+		</>
 	);
 };

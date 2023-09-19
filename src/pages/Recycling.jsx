@@ -8,6 +8,7 @@ import GoogleMaps from "../components/GoogleMaps";
 export const Recycling = () => {
 	const [orgData, setOrgData] = useState([]);
 	const [ratings, setRatings] = useState({});
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		axios
@@ -39,6 +40,7 @@ export const Recycling = () => {
 					});
 					//Take the results and put it in the setRatings state
 					setRatings(ratingsObject);
+					setLoading(false);
 				});
 			})
 			.catch((error) => {
@@ -96,16 +98,20 @@ export const Recycling = () => {
 
 	return (
 		<div>
-			{orgData.map((org) => (
-				<div key={org.id} onClick={() => navigateDetail(org.id)}>
-					<h2>{org.name}</h2>
-					<p>
-						{org.address} {org.zipcode} {org.city}
-					</p>
-					<p>{calculateAverageRating(org.id)}</p>
-					<GoogleMaps orgId={org.id} />
-				</div>
-			))}
+			{loading ? ( // Display a loading message while data is loading
+				<div>Loading...</div>
+			) : (
+				orgData.map((org) => (
+					<div key={org.id} onClick={() => navigateDetail(org.id)}>
+						<h2>{org.name}</h2>
+						<p>
+							{org.address} {org.zipcode} {org.city}
+						</p>
+						<p>{calculateAverageRating(org.id)}</p>
+						<GoogleMaps orgId={org.id} />
+					</div>
+				))
+			)}
 			<Outlet />
 		</div>
 	);

@@ -48,6 +48,10 @@ export const Purchase = () => {
 											onClick={() => setContainerId(container.id)}
 										>
 											{container.name}
+											<img
+												src={`http://localhost:3000/assets/images/icons/${container.icon_filename}`}
+												alt="Container Icon"
+											/>
 										</div>
 									);
 								})}

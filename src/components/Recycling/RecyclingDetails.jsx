@@ -86,6 +86,24 @@ export const RecyclingDetails = () => {
 		return stars;
 	};
 
+	//format the isoDate to danish time
+	const formatDate = (isoDate) => {
+		const date = new Date(isoDate);
+		const options = {
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+			hour: "numeric",
+			minute: "numeric",
+			second: "numeric",
+			hour12: false,
+			timeZoneName: "short",
+			timeZone: "Europe/Copenhagen",
+		};
+		const dateFormat = new Intl.DateTimeFormat("da-DK", options);
+		return dateFormat.format(date);
+	};
+
 	return (
 		<MainContainer>
 			{loading ? (
@@ -122,6 +140,7 @@ export const RecyclingDetails = () => {
 								<ReviewCard key={review.id}>
 									<p>
 										{review.user.firstname} {review.user.lastname}
+										{formatDate(review.created_at)}
 									</p>
 									<div>{ReviewRating(review.num_stars)}</div>
 									<p>{review.subject}</p>

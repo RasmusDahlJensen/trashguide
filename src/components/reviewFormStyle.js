@@ -30,7 +30,9 @@ export const TextAreaTitle = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	p {
+		margin: 0;
+	}
+	h2 {
 		font-weight: 600;
-		font-size: 16px;
 	}
 `;

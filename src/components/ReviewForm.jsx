@@ -59,15 +59,14 @@ export const ReviewForm = ({ org_id }) => {
 		<FormContainer onSubmit={handleReviewSubmit}>
 			<TextAreaContainer>
 				<TextAreaTitle>
-					<p>Skriv en kommentar</p>
+					<h2>Skriv en kommentar</h2>
 					<div>
-						<div>Hvor mange stjerner vil du give?</div>
+						<p>Hvor mange stjerner vil du give?</p>
 						<label>
 							<input
 								type="radio"
 								name="num_stars"
 								value="1"
-								checked
 								onChange={handleReviewInputChange}
 							/>
 							1
@@ -120,7 +119,7 @@ export const ReviewForm = ({ org_id }) => {
 					required
 				/>
 			</TextAreaContainer>
-			<button type="submit">Kommenter</button>
+			<button type="submit">Indsend anmeldelse</button>
 		</FormContainer>
 	);
 };

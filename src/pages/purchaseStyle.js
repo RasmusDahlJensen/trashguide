@@ -7,6 +7,9 @@ export const MainContainer = styled.main`
 export const StepsContainer = styled.div`
 	background-color: #114d46;
 	width: 50%;
+	display: flex;
+	justify-content: end;
+	padding-top: 50px;
 	@media (max-width: 900px) {
 		display: none;
 	}

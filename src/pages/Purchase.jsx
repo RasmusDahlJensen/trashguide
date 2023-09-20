@@ -8,11 +8,21 @@ import {
 	StepsContainer,
 } from "./purchaseStyle";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Purchase = () => {
 	const [containerData, setContainerData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [containerId, setContainerId] = useState(null);
+	const navigate = useNavigate();
+
+	const navigateDetail = (container_id) => {
+		if (containerId) {
+			navigate(`/purchase/${container_id}`);
+		} else {
+			return;
+		}
+	};
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -64,7 +74,9 @@ export const Purchase = () => {
 							))}
 						</CardContainer>
 						<div>
-							<button>Videre</button>
+							<button onClick={() => navigateDetail(containerId)}>
+								Videre
+							</button>
 						</div>
 					</ContentContainer>
 				</FlexContainer>

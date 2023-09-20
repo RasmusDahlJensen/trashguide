@@ -18,11 +18,11 @@ const GoogleMaps = ({ orgId, height, width }) => {
 			});
 	}, [orgId]);
 
-	const libraries = ["places"];
 	const mapContainerStyle = {
 		width: width,
 		height: height,
 	};
+
 	const center = {
 		lat: orgDetails.longtitude,
 		lng: orgDetails.latitude,
@@ -33,7 +33,6 @@ const GoogleMaps = ({ orgId, height, width }) => {
 	};
 	const { isLoaded, loadError } = useLoadScript({
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-		libraries,
 	});
 
 	if (loadError) {

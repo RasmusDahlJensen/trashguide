@@ -92,7 +92,7 @@ export const RecyclingDetails = () => {
 				<div>Loading...</div>
 			) : (
 				<>
-					<GoogleMaps orgId={org_id} height={"100%"} width={"400px"} />
+					<GoogleMaps orgId={org_id} height={"400px"} width={"100%"} />
 					<RecycleDetails>
 						<h2>{orgData.name}</h2>
 						<div>

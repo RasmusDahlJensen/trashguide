@@ -10,9 +10,9 @@ import {
 import axios from "axios";
 
 export const Purchase = () => {
-	const [containerData, setContainerData] = useState();
-	const [loading, setLoading] = useState();
-	const [containerId, setContainerId] = useState();
+	const [containerData, setContainerData] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [containerId, setContainerId] = useState(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -20,7 +20,6 @@ export const Purchase = () => {
 				const response = await axios.get(`http://localhost:3000/containers`);
 				const data = response.data;
 				setContainerData(data);
-				console.log(containerData);
 				setLoading(false);
 			} catch (error) {
 				console.error("Error fetching data: ", error);
@@ -49,21 +48,20 @@ export const Purchase = () => {
 							</p>
 						</div>
 						<CardContainer>
-							{containerData &&
-								containerData.map((container) => {
-									return (
-										<Card
-											key={container.id}
-											onClick={() => setContainerId(container.id)}
-										>
-											<img
-												src={`http://localhost:3000/assets/images/icons/${container.icon_filename}`}
-												alt="Container Icon"
-											/>
-											<p>{container.name}</p>
-										</Card>
-									);
-								})}
+							{containerData.map((container) => (
+								<Card
+									key={container.id}
+									onClick={() => setContainerId(container.id)}
+									className={containerId === container.id ? "active" : ""}
+								>
+									<img
+										src={`http://localhost:3000/assets/images/icons/${container.icon_filename}`}
+										alt="Container Icon"
+										draggable="false"
+									/>
+									<p>{container.name}</p>
+								</Card>
+							))}
 						</CardContainer>
 						<div>
 							<button>Videre</button>

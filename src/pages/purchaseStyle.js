@@ -40,6 +40,12 @@ export const CardContainer = styled.div`
 	flex-wrap: wrap;
 	gap: 50px;
 	width: 500px;
+	user-select: none;
+	.active {
+		border: 2px solid;
+		border-color: ${(props) => props.theme.tertiaryColor};
+		box-sizing: border-box;
+	}
 `;
 
 export const Card = styled.div`

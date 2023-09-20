@@ -48,7 +48,8 @@ export const FormInput = styled.input`
 	width: 300px;
 	border-radius: 10px;
 	margin-bottom: 20px;
-	border: ${(props) => (props.hasError ? "2px solid red" : "1px solid #ccc")};
-	margin-top: ${(props) => (props.hasError ? "-1px" : "")};
-	margin-left: ${(props) => (props.hasError ? "-1px" : "")};
+	border: 1px solid #ccc;
+	&.has-error {
+		border: 2px solid red;
+	}
 `;

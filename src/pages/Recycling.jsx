@@ -24,7 +24,7 @@ export const Recycling = () => {
 			.then((response) => {
 				const orgs = response.data;
 				setOrgData(orgs);
-				console.log(orgs);
+				// console.log(orgs);
 
 				//Create an array of promises to fetch rating for each organisation
 				const ratingPromises = orgs.map((org) => {
@@ -38,7 +38,6 @@ export const Recycling = () => {
 							);
 						});
 				});
-
 				//Using promise.alæl to wait for all promises to resolve
 				Promise.all(ratingPromises).then((ratingsData) => {
 					const ratingsObject = {};
@@ -73,7 +72,7 @@ export const Recycling = () => {
 				) : (
 					orgData.map((org) => (
 						<CardContainer key={org.id} onClick={() => navigateDetail(org.id)}>
-							<GoogleMaps orgId={org.id} height={"100%"} width={"200px"} />
+							<GoogleMaps orgId={org.id} height={"200px"} width={"100%"} />
 							<CarContent>
 								<h2>{org.name}</h2>
 								<p>

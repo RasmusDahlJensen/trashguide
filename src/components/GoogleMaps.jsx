@@ -20,8 +20,8 @@ const GoogleMaps = ({ orgId, height, width }) => {
 
 	const libraries = ["places"];
 	const mapContainerStyle = {
-		width: height,
-		height: width,
+		width: width,
+		height: height,
 	};
 	const center = {
 		lat: orgDetails.longtitude,

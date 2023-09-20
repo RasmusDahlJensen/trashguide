@@ -95,10 +95,6 @@ export const RecyclingDetails = () => {
 			day: "numeric",
 			hour: "numeric",
 			minute: "numeric",
-			second: "numeric",
-			hour12: false,
-			timeZoneName: "short",
-			timeZone: "Europe/Copenhagen",
 		};
 		const dateFormat = new Intl.DateTimeFormat("da-DK", options);
 		return dateFormat.format(date);
@@ -140,8 +136,8 @@ export const RecyclingDetails = () => {
 								<ReviewCard key={review.id}>
 									<p>
 										{review.user.firstname} {review.user.lastname}
-										{formatDate(review.created_at)}
 									</p>
+									<p>{formatDate(review.created_at)}</p>
 									<div>{ReviewRating(review.num_stars)}</div>
 									<p>{review.subject}</p>
 								</ReviewCard>

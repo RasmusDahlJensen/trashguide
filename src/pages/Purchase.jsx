@@ -42,7 +42,14 @@ export const Purchase = () => {
 						<>
 							{containerData &&
 								containerData.map((container) => {
-									return <div key={container.id}>{container.name}</div>;
+									return (
+										<div
+											key={container.id}
+											onClick={() => setContainerId(container.id)}
+										>
+											{container.name}
+										</div>
+									);
 								})}
 						</>
 					</div>

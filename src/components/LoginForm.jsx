@@ -12,6 +12,7 @@ export const LoginForm = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
+	//Reset the form error after 3 seconds
 	useEffect(() => {
 		if (errorMessage) {
 			const timeoutId = setTimeout(() => {
@@ -24,39 +25,45 @@ export const LoginForm = () => {
 		}
 	}, [errorMessage]);
 
+	//Email test to see if the email is valid
 	const isEmailValid = (email) => {
 		const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 		return emailPattern.test(email);
 	};
-
+	//When you submit the form you fire this function
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
+		//If there's not a username or a password, or if its just missing one of them
+		//We set the error to this:
 		if (!username || !password) {
 			setErrorMessage("Udfyld venligst både email og kodeord.");
 			return;
 		}
-
+		//If the email fails the REGEX test we set the error to this:
 		if (!isEmailValid(username)) {
 			setErrorMessage("Venligst indtast en gyldig email.");
 			return;
 		}
-
+		//Otherwise if it passes the vlaidation it'll be posted to the API
 		try {
 			const response = await axios.post("http://localhost:3000/login", {
 				username,
 				password,
 			});
-
+			//If the status comes back as ok we take the user DATA and destructure it
+			//And send it to our authContext
 			if (response.status === 200) {
 				const { access_token, user } = response.data;
 				login(access_token, user);
 				setErrorMessage("");
-
+				//If we're still on the login page we get redirected to the frontpage
 				if (location.pathname === "/login") {
 					navigate("/");
 				}
 			}
+			//If the response comes back negative we show the user an error
+			//And put a more detailed error message in the console
 		} catch (error) {
 			if (error.response) {
 				setErrorMessage("Forkert Email eller kodeord");

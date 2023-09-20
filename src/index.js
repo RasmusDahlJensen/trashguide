@@ -7,8 +7,8 @@ import { Title } from "./Title";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./style/theme";
 import { GlobalStyles } from "./style/globalStyle";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { Header } from "./components/PageLayout/Header";
+import { Footer } from "./components/PageLayout/Footer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

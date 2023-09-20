@@ -7,9 +7,9 @@ import {
 	NavItem,
 } from "./headerStyle";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/Logo.png";
-import { LogoutButton } from "./Logout";
-import { useAuth } from "../hooks/AuthContext";
+import logo from "../../assets/Logo.png";
+import { LogoutButton } from "../Logout";
+import { useAuth } from "../../hooks/AuthContext";
 
 export const Header = () => {
 	const { isLoggedIn } = useAuth();

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { SectionCard } from "../components/SectionCard";
+import { SectionCard } from "../components/Sorting/SectionCard";
 import {
 	BackgroundImage,
 	CardContainer,

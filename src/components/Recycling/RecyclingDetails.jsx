@@ -8,14 +8,14 @@ import {
 	ReviewContainer,
 	TextArea,
 	TextBoxContainer,
-} from "./recyclingDetail";
+} from "./recyclingDetailStyle";
 import GoogleMaps from "./GoogleMaps";
-import fullStar from "../assets/fullStar.png";
-import emptyStar from "../assets/emptyStar.png";
-import { StarRating } from "./StarRating";
-import { useAuth } from "../hooks/AuthContext";
-import { LoginForm } from "./LoginForm";
-import { ReviewForm } from "./ReviewForm";
+import fullStar from "../../assets/fullStar.png";
+import emptyStar from "../../assets/emptyStar.png";
+import { StarRating } from "../StarRating";
+import { useAuth } from "../../hooks/AuthContext";
+import { LoginForm } from "../LoginForm";
+import { ReviewForm } from "../ReviewForm";
 
 export const RecyclingDetails = () => {
 	const [orgData, setOrgData] = useState();

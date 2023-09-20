@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Sorting } from "./pages/Sorting";
-import { SectionDetail } from "./components/SectionDetail";
+import { SectionDetail } from "./components/Sorting/SectionDetail";
 import { Recycling } from "./pages/Recycling";
 import { NotFound } from "./pages/404";
-import { RecyclingDetails } from "./components/RecyclingDetails";
+import { RecyclingDetails } from "./components/Recycling/RecyclingDetails";
 import { Login } from "./pages/Login";
 
 export const AppRouter = () => {

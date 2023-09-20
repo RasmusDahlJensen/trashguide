@@ -1,7 +1,7 @@
 import React from "react";
 import { FooterContainer, FooterContent } from "./footerStyle";
-import logo from "../assets/FooterLogo.png";
-import arrow from "../assets/Layout/icon-arrow-up.svg";
+import logo from "../../assets/FooterLogo.png";
+import arrow from "../../assets/Layout/icon-arrow-up.svg";
 
 export const Footer = () => {
 	return (

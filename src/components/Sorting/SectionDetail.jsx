@@ -7,8 +7,8 @@ import {
 	TitleContainer,
 } from "./sectionDetailStyle";
 import { CategoryCard } from "./CategoryCard";
-import { BackgroundImage } from "../pages/homeStyle";
-import bgImage from "../assets/Layout/bg-wave-1.svg";
+import { BackgroundImage } from "../../pages/homeStyle";
+import bgImage from "../../assets/Layout/bg-wave-1.svg";
 
 export const SectionDetail = () => {
 	//useParams to get the section_id

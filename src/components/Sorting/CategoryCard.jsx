@@ -12,8 +12,8 @@ import {
 	NotAllowedContainer,
 	TitleContainer,
 } from "./categoryCardStyle";
-import DownArrow from "../assets/Arrow-Down.png";
-import UpArrow from "../assets/Arrow-Up.png";
+import DownArrow from "../../assets/Arrow-Down.png";
+import UpArrow from "../../assets/Arrow-Up.png";
 import axios from "axios";
 
 //Here we have the params for the props

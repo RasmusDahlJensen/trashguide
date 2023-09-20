@@ -18,15 +18,9 @@ export const ReviewForm = ({ org_id }) => {
 		setNewReview({
 			//Spread operator to preserve teh other properties and only update what I'm interacting with
 			...newReview,
+			//Here it's determined what im interacting with and what the value im giving
+			//So it could be [Num_stars]: 5
 			[name]: value,
-		});
-	};
-	//Change the value for the radio buttons to determine the amount of stars
-	const handleRatingChange = (e) => {
-		setNewReview({
-			//Spread operator to preserve the other properties of the state and only update the stars
-			...newReview,
-			num_stars: e.target.value,
 		});
 	};
 
@@ -58,12 +52,13 @@ export const ReviewForm = ({ org_id }) => {
 	return (
 		<form onSubmit={handleReviewSubmit}>
 			<h3>Anmeldelse</h3>
+			<div>Hvor mange stjerner vil du give?</div>
 			<label>
 				<input
 					type="radio"
 					name="num_stars"
 					value="1"
-					onChange={handleRatingChange}
+					onChange={handleReviewInputChange}
 				/>
 				1
 			</label>
@@ -72,7 +67,7 @@ export const ReviewForm = ({ org_id }) => {
 					type="radio"
 					name="num_stars"
 					value="2"
-					onChange={handleRatingChange}
+					onChange={handleReviewInputChange}
 				/>
 				2
 			</label>
@@ -81,7 +76,7 @@ export const ReviewForm = ({ org_id }) => {
 					type="radio"
 					name="num_stars"
 					value="3"
-					onChange={handleRatingChange}
+					onChange={handleReviewInputChange}
 				/>
 				3
 			</label>
@@ -90,7 +85,7 @@ export const ReviewForm = ({ org_id }) => {
 					type="radio"
 					name="num_stars"
 					value="4"
-					onChange={handleRatingChange}
+					onChange={handleReviewInputChange}
 				/>{" "}
 				4
 			</label>
@@ -99,7 +94,7 @@ export const ReviewForm = ({ org_id }) => {
 					type="radio"
 					name="num_stars"
 					value="5"
-					onChange={handleRatingChange}
+					onChange={handleReviewInputChange}
 				/>
 				5
 			</label>

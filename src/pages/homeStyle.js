@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CallToAction = styled.div`
-	position: absolute;
+	position: relative;
 	top: 90%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -15,6 +15,8 @@ export const CallToAction = styled.div`
 	border-radius: 15px;
 	h2 {
 		font-weight: 400;
+		font-size: 22px;
+		white-space: nowrap;
 	}
 
 	@media (max-width: 900px) {
@@ -40,7 +42,6 @@ export const ButtonContainer = styled.div`
 export const MainContainer = styled.main`
 	max-width: 1200px;
 	margin: auto;
-	margin-top: 200px;
 	@media (max-width: 800px) {
 		display: flex;
 		flex-direction: column;
@@ -51,7 +52,7 @@ export const MainContainer = styled.main`
 `;
 
 export const ArticleContainer = styled.article`
-	margin-top: 150px;
+	margin-top: 50px;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 50px;
@@ -82,6 +83,7 @@ export const ArticleTitle = styled.div`
 		display: inline;
 	}
 
+	//Pseudo elements that I can style seperate of the H2 to create the green bars effect
 	h2::before,
 	h2::after {
 		content: "";

@@ -47,7 +47,7 @@ export const Slideshow = () => {
 		<SlideshowContainer>
 			{/* ControlButton for navigating to the previous slide  using the decrement function*/}
 			<ControlButton onClick={prevSlide} direction="prev">
-				<img src={leftArrow} alt="" srcset="" />
+				<img src={leftArrow} alt="arrow to the leftt" />
 			</ControlButton>
 			{/* SlideshowImage: The image displayed in the slideshow */}
 			<SlideshowImage
@@ -56,7 +56,7 @@ export const Slideshow = () => {
 			/>
 			{/* ControlButton for navigating to the next slide using the increment function */}
 			<ControlButton onClick={nextSlide} direction="next">
-				<img src={rightArrow} alt="" srcset="" />
+				<img src={rightArrow} alt="arrow to the right" />
 			</ControlButton>
 		</SlideshowContainer>
 	);

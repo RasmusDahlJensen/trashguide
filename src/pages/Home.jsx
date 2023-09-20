@@ -51,12 +51,12 @@ export const Home = () => {
 						</ArticleButtonContainer>
 					</ArticleContent>
 					<div>
-						<img src={articleOnePic} alt="Sorting" srcset="" />
+						<img src={articleOnePic} alt="Sorting" />
 					</div>
 				</ArticleContainer>
 				<ArticleContainer>
 					<div>
-						<img src={articleTwoPic} alt="Containers" srcset="" />
+						<img src={articleTwoPic} alt="Containers" />
 					</div>
 					<ArticleContent>
 						<ArticleTitle>

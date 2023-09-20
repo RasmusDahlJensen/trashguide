@@ -47,9 +47,7 @@ export const Header = () => {
 			{/* Determines whether or not the burger menu should be displayed or not in the CSS */}
 			<Nav className={isMobileMenuOpen ? "show" : ""}>
 				<NavItem>
-					<NavLink exact to="/">
-						Forside
-					</NavLink>
+					<NavLink to="/">Forside</NavLink>
 				</NavItem>
 				<NavItem>
 					<NavLink to="/sorting">Sortering</NavLink>

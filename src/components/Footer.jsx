@@ -8,7 +8,7 @@ export const Footer = () => {
 		<FooterContainer>
 			<div>
 				<div>
-					<img src={logo} alt="" srcset="" />
+					<img src={logo} alt="logo" />
 				</div>
 				<p>
 					Vi arbejder for at informere om korrekt affaldssortering. Ved at

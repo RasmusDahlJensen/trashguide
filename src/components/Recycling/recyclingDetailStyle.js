@@ -48,4 +48,6 @@ export const TextBoxContainer = styled.div`
 
 export const TextArea = styled.div`
 	margin: 15px 0 15px 0;
+	display: flex;
+	justify-content: center;
 `;

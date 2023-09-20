@@ -16,7 +16,7 @@ const GoogleMaps = ({ orgId, height, width }) => {
 			.catch((error) => {
 				console.error("Error fetching organization details: ", error);
 			});
-	}, [orgId]);
+	}, []);
 
 	const mapContainerStyle = {
 		width: width,

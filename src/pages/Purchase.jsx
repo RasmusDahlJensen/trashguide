@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { MainContainer } from "./purchaseStyle";
+import {
+	Card,
+	CardContainer,
+	ContentContainer,
+	FlexContainer,
+	MainContainer,
+	StepsContainer,
+} from "./purchaseStyle";
 import axios from "axios";
 
 export const Purchase = () => {
@@ -29,35 +36,40 @@ export const Purchase = () => {
 			{loading ? (
 				<div>Loading...</div>
 			) : (
-				<div>
-					<div>Steps</div>
-					<div>
-						<div>Trin 1</div>
-						<div>Vælg type</div>
+				<FlexContainer>
+					<StepsContainer>Steps</StepsContainer>
+					<ContentContainer>
 						<div>
-							Tation argumentum et usu, dicit viderer evertitur te has. Eu
-							dictas concludaturque usu, facete detracto patrioque an per,
-							lucilius pertinacia eu vel.
+							<p>Trin 1</p>
+							<h2>Vælg type</h2>
+							<p>
+								Tation argumentum et usu, dicit viderer evertitur te has. Eu
+								dictas concludaturque usu, facete detracto patrioque an per,
+								lucilius pertinacia eu vel.
+							</p>
 						</div>
-						<>
+						<CardContainer>
 							{containerData &&
 								containerData.map((container) => {
 									return (
-										<div
+										<Card
 											key={container.id}
 											onClick={() => setContainerId(container.id)}
 										>
-											{container.name}
 											<img
 												src={`http://localhost:3000/assets/images/icons/${container.icon_filename}`}
 												alt="Container Icon"
 											/>
-										</div>
+											<p>{container.name}</p>
+										</Card>
 									);
 								})}
-						</>
-					</div>
-				</div>
+						</CardContainer>
+						<div>
+							<button>Videre</button>
+						</div>
+					</ContentContainer>
+				</FlexContainer>
 			)}
 		</MainContainer>
 	);

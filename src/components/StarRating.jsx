@@ -40,11 +40,6 @@ export const StarRating = ({ orgId }) => {
 	//Basic arithmetics to calculate the average rating based on the amount of stars
 	const averageRating = totalStars / ratings.length;
 
-	//Checking if the rating isnt a number, in which case it'll give a message there's no reviews
-	if (isNaN(averageRating)) {
-		return "Ingen stjerner givet";
-	}
-
 	//A for loop to determine how many full stars and how many empty stars
 	//it loops over the rating itself, and as the iterator is lower than the rating
 	//It'll add a full star, otherwise it'll add an empty star

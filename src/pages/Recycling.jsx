@@ -49,7 +49,7 @@ export const Recycling = () => {
 					//Take the results and put it in the setRatings state
 					setRatings(ratingsObject);
 					setLoading(false);
-					console.log(ratingsObject);
+					// console.log(ratingsObject);
 				});
 			})
 			.catch((error) => {

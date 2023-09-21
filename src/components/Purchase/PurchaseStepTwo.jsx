@@ -21,7 +21,7 @@ export const PurchaseStepTwo = ({
 				},
 				body: JSON.stringify(productData),
 			});
-			navigateToStepThree(productData);
+			navigateToStepThree();
 		} catch (error) {
 			console.error("Error posting review:", error);
 		}

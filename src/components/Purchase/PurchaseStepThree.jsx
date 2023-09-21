@@ -1,11 +1,19 @@
 import React from "react";
+import { ConfirmationContainer } from "../../pages/purchaseStyle";
+import { Checkmark } from "react-checkmark";
 
 export const PurchaseStepThree = ({ productData }) => {
-	console.log(productData);
 	return (
-		<div>
-			Hej {productData.fullname} du har købt {productData.container_id}
-			vi har sendt faktura til {productData.email}
-		</div>
+		<main>
+			<ConfirmationContainer>
+				<p>
+					Hej {productData.fullname}, mange tak for dit køb, vi har sendt
+					fakturaen til din email på {productData.email}
+				</p>
+				<figure>
+					<Checkmark size="128px" color="green" />
+				</figure>
+			</ConfirmationContainer>
+		</main>
 	);
 };

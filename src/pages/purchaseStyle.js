@@ -66,3 +66,12 @@ export const Card = styled.div`
 		width: 50px;
 	}
 `;
+
+export const ConfirmationContainer = styled.div`
+	margin-top: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	height: 300px;
+`;

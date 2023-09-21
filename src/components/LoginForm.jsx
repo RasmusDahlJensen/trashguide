@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FormButton, FormFlex, FormInput } from "../pages/loginStyle";
-import { useAuth } from "../hooks/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 

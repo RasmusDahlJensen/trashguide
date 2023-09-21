@@ -36,6 +36,13 @@ export const ReviewCard = styled.div`
 	p {
 		margin-top: 1px;
 	}
+	div:first-of-type {
+		display: flex;
+		justify-content: space-between;
+		img {
+			width: 20px;
+		}
+	}
 `;
 
 export const TextBoxContainer = styled.div`

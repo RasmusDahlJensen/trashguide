@@ -13,9 +13,10 @@ import GoogleMaps from "./GoogleMaps";
 import fullStar from "../../assets/fullStar.png";
 import emptyStar from "../../assets/emptyStar.png";
 import { StarRating } from "../StarRating";
-import { useAuth } from "../../hooks/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { LoginForm } from "../LoginForm";
 import { ReviewForm } from "../ReviewForm";
+import trash from "../../assets/trashCan.svg";
 
 export const RecyclingDetails = () => {
 	const [orgData, setOrgData] = useState();
@@ -56,7 +57,7 @@ export const RecyclingDetails = () => {
 		};
 
 		fetchData();
-	}, []);
+	}, [org_id]);
 
 	useEffect(() => {
 		if (orgData && reviewData) {
@@ -100,6 +101,33 @@ export const RecyclingDetails = () => {
 		return dateFormat.format(date);
 	};
 
+	const deleteReview = (id) => {
+		console.log("Review ID", id);
+
+		const accessToken = localStorage.getItem("access_token");
+
+		if (!accessToken) {
+			console.error("Access token not found in localStorage");
+			return;
+		}
+		const headers = {
+			Authorization: `Bearer ${accessToken}`,
+		};
+		try {
+			axios
+				.delete(`http://localhost:3000/reviews/${id}`, { headers })
+				.then((response) => {
+					if (response.status === 204) {
+					}
+				})
+				.catch((error) => {
+					console.error("Error deleting review:", error);
+				});
+		} catch (error) {
+			console.error("Error sending delete request:", error);
+		}
+	};
+
 	return (
 		<MainContainer>
 			{loading ? (
@@ -134,9 +162,20 @@ export const RecyclingDetails = () => {
 						) : (
 							reviewData.map((review) => (
 								<ReviewCard key={review.id}>
-									<p>
-										{review.user.firstname} {review.user.lastname}
-									</p>
+									<div>
+										<p>
+											{review.user.firstname} {review.user.lastname}
+										</p>
+										{review.user.id ===
+										parseFloat(localStorage.getItem("user_id")) ? (
+											<img
+												src={trash}
+												alt="delete"
+												onClick={() => deleteReview(review.id)}
+											/>
+										) : null}
+									</div>
+
 									<p>{formatDate(review.created_at)}</p>
 									<div>{ReviewRating(review.num_stars)}</div>
 									<p>{review.subject}</p>

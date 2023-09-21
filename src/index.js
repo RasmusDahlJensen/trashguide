@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { AuthProvider } from "./hooks/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import { AppRouter } from "./AppRouter";
 import { BrowserRouter } from "react-router-dom";
 import { Title } from "./Title";

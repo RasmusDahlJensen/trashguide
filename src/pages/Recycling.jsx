@@ -24,7 +24,7 @@ export const Recycling = () => {
 			.then((response) => {
 				const orgs = response.data;
 				setOrgData(orgs);
-				// console.log(orgs);
+				console.log(orgs);
 
 				//Create an array of promises to fetch rating for each organisation
 				const ratingPromises = orgs.map((org) => {
@@ -40,8 +40,9 @@ export const Recycling = () => {
 				});
 				//Using promise.alæl to wait for all promises to resolve
 				Promise.all(ratingPromises).then((ratingsData) => {
+					//Once resolved we create an empty object we can fill we data
 					const ratingsObject = {};
-					//Fill the object with each OrgID and their ratings
+					//Here we go through each orgID and its ratings and put them in the ratingsObject
 					ratingsData.forEach(({ orgId, rating }) => {
 						ratingsObject[orgId] = rating;
 					});

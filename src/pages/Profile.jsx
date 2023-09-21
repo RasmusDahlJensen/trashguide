@@ -21,7 +21,6 @@ export const Profile = () => {
 	const [orderArray, setOrderArray] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [orderDetails, setOrderDetails] = useState([]);
-	const [render, rerender] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -39,7 +38,7 @@ export const Profile = () => {
 			}
 		};
 		fetchData();
-	}, [userID, render]);
+	}, [userID]);
 
 	let filteredOrders = [];
 	if (!loading) {
@@ -69,7 +68,7 @@ export const Profile = () => {
 		if (filteredOrders.length > 0 && orderDetails.length === 0) {
 			fetchOrderDetails();
 		}
-	}, [filteredOrders, orderDetails, render]);
+	}, [filteredOrders, orderDetails]);
 
 	//format the isoDate to danish time
 	const formatDate = (isoDate) => {

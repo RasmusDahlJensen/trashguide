@@ -1,20 +1,19 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [userData, setUserData] = useState({});
 	const accessToken = localStorage.getItem("access_token");
 
 	useEffect(() => {
 		accessToken ? setIsLoggedIn(true) : setIsLoggedIn(false);
-	}, []);
+	}, [accessToken]);
 
 	const login = (access_token, user) => {
 		localStorage.setItem("access_token", access_token);
 		localStorage.setItem("user_id", user.id);
-		setUserData(user);
 		setIsLoggedIn(true);
 	};
 
@@ -26,7 +25,7 @@ export function AuthProvider({ children }) {
 	};
 
 	return (
-		<AuthContext.Provider value={{ isLoggedIn, userData, login, logout }}>
+		<AuthContext.Provider value={{ isLoggedIn, login, logout }}>
 			{children}
 		</AuthContext.Provider>
 	);

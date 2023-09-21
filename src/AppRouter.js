@@ -7,6 +7,7 @@ import { NotFound } from "./pages/404";
 import { RecyclingDetails } from "./components/Recycling/RecyclingDetails";
 import { Login } from "./pages/Login";
 import { Purchase } from "./pages/Purchase";
+import { Profile } from "./pages/Profile";
 
 export const AppRouter = () => {
 	return (
@@ -18,6 +19,8 @@ export const AppRouter = () => {
 			<Route path="/recycling/:org_id" element={<RecyclingDetails />} />
 			<Route path="/purchase/" element={<Purchase />} />
 			<Route path="/login/" element={<Login />} />
+			<Route path="/profile/" element={<Profile />} />
+
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);

@@ -3,9 +3,10 @@ import axios from "axios";
 
 export const Profile = () => {
 	const userID = localStorage.getItem("user_id");
-	const [userEmail, setUserEmail] = useState();
-	const [orderArray, setOrderArray] = useState();
+	const [userData, setUserData] = useState();
+	const [orderArray, setOrderArray] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [orderDetails, setOrderDetails] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -15,7 +16,7 @@ export const Profile = () => {
 					axios.get(`http://localhost:3000/orders`),
 				]);
 
-				setUserEmail(userEmailFetch.data.email);
+				setUserData(userEmailFetch.data);
 				setOrderArray(orderArrayFetch.data);
 				setLoading(false);
 			} catch (error) {
@@ -23,22 +24,45 @@ export const Profile = () => {
 			}
 		};
 		fetchData();
-	}, []);
+	}, [userID]);
 
 	let filteredOrders = [];
 	if (!loading) {
 		filteredOrders = orderArray.filter((order) => {
-			return order.email === userEmail;
+			return order.email === userData.email;
 		});
 	}
+
+	useEffect(() => {
+		const fetchOrderDetails = async () => {
+			try {
+				const details = await Promise.all(
+					filteredOrders.map(async (order) => {
+						const response = await axios.get(
+							`http://localhost:3000/orders/${order.id}`
+						);
+						return response.data;
+					})
+				);
+
+				setOrderDetails(details);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		if (filteredOrders.length > 0 && orderDetails.length === 0) {
+			fetchOrderDetails();
+		}
+	}, [filteredOrders, orderDetails]);
 
 	return (
 		<div>
 			{loading ? (
 				<div>Loading</div>
 			) : (
-				filteredOrders.map((order) => {
-					return <div key={order.orderNumber}>{order.id}</div>;
+				orderDetails.map((order) => {
+					return <div key={order.id}>{order.fullname}</div>;
 				})
 			)}
 		</div>

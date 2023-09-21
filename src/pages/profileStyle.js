@@ -23,6 +23,14 @@ export const CardContainer = styled.div`
 	height: 350px;
 `;
 
+export const CardTitle = styled.div`
+	display: flex;
+	justify-content: space-between;
+	img {
+		cursor: pointer;
+	}
+`;
+
 export const ContainerType = styled.div`
 	display: flex;
 	flex-direction: column;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
 	CardContainer,
+	CardTitle,
 	ContainerType,
 	OrderCard,
 	OrderContainer,
@@ -12,6 +13,7 @@ import {
 	ContainerPicture,
 } from "../components/ProfileContainer";
 import { LogoutButton } from "../components/Logout";
+import trash from "../assets/trashCan.svg";
 
 export const Profile = () => {
 	const userID = localStorage.getItem("user_id");
@@ -19,6 +21,7 @@ export const Profile = () => {
 	const [orderArray, setOrderArray] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [orderDetails, setOrderDetails] = useState([]);
+	const [render, rerender] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -36,7 +39,7 @@ export const Profile = () => {
 			}
 		};
 		fetchData();
-	}, [userID]);
+	}, [userID, render]);
 
 	let filteredOrders = [];
 	if (!loading) {
@@ -66,7 +69,7 @@ export const Profile = () => {
 		if (filteredOrders.length > 0 && orderDetails.length === 0) {
 			fetchOrderDetails();
 		}
-	}, [filteredOrders, orderDetails]);
+	}, [filteredOrders, orderDetails, render]);
 
 	//format the isoDate to danish time
 	const formatDate = (isoDate) => {
@@ -81,7 +84,37 @@ export const Profile = () => {
 		const dateFormat = new Intl.DateTimeFormat("da-DK", options);
 		return dateFormat.format(date);
 	};
-	// console.log(userData);
+
+	const deleteOrder = (id) => {
+		// console.log("Review ID", id);
+
+		const accessToken = localStorage.getItem("access_token");
+		if (!accessToken) {
+			console.error("Access token not found in localStorage");
+			return;
+		}
+		try {
+			axios
+				.delete(`http://localhost:3000/orders/${id}`, {
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				})
+				.then((response) => {
+					console.log(response);
+					if (response.status === 200) {
+						//Rerender to update component
+						rerender(!render);
+					}
+				})
+				.catch((error) => {
+					console.error("Error deleting order:", error);
+				});
+		} catch (error) {
+			console.error("Error sending delete request:", error);
+		}
+	};
+
 	return (
 		<OrderContainer>
 			<CardContainer>
@@ -91,7 +124,14 @@ export const Profile = () => {
 					orderDetails.map((order) => {
 						return (
 							<OrderCard key={order.id}>
-								<p>Ordre nummer {order.id}</p>
+								<CardTitle>
+									<p>Ordre nummer {order.id}</p>
+									<img
+										src={trash}
+										alt="delete"
+										onClick={() => deleteOrder(order.id)}
+									/>
+								</CardTitle>
 								<p>Bestilt på dato: </p>
 
 								<p>{formatDate(order.createdAt)}</p>

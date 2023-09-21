@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { OrderCard, OrderContainer } from "./profileStyle";
+import {
+	CardContainer,
+	ContainerType,
+	OrderCard,
+	OrderContainer,
+	UserContainer,
+} from "./profileStyle";
 import {
 	ContainerName,
 	ContainerPicture,
 } from "../components/ProfileContainer";
+import { LogoutButton } from "../components/Logout";
 
 export const Profile = () => {
 	const userID = localStorage.getItem("user_id");
@@ -74,31 +81,48 @@ export const Profile = () => {
 		const dateFormat = new Intl.DateTimeFormat("da-DK", options);
 		return dateFormat.format(date);
 	};
-
+	// console.log(userData);
 	return (
 		<OrderContainer>
-			{loading ? (
-				<div>Loading</div>
-			) : (
-				orderDetails.map((order) => {
-					return (
-						<OrderCard key={order.id}>
-							<p>Ordre nummer {order.id}</p>
-							<p>{order.fullname}</p>
+			<CardContainer>
+				{loading ? (
+					<div>Loading</div>
+				) : (
+					orderDetails.map((order) => {
+						return (
+							<OrderCard key={order.id}>
+								<p>Ordre nummer {order.id}</p>
+								<p>Bestilt på dato: </p>
+
+								<p>{formatDate(order.createdAt)}</p>
+								<ContainerType>
+									<p>Container type:</p>
+									<p>
+										<ContainerName orderId={order.container_id} />
+									</p>
+									<ContainerPicture orderId={order.container_id} />
+								</ContainerType>
+							</OrderCard>
+						);
+					})
+				)}
+			</CardContainer>
+			<div>
+				{loading ? (
+					<div>Loading</div>
+				) : (
+					userData && (
+						<UserContainer>
+							<LogoutButton />
 							<p>
-								{order.address} {order.zipcode}
-								{order.city}
+								Hej {userData.firstname} {userData.lastname}, her kan du se dine
+								bestillinger
 							</p>
-							<p>
-								<ContainerName orderId={order.container_id} />
-							</p>
-							<ContainerPicture orderId={order.container_id} />
-							<p>{order.phone}</p>
-							<p>{formatDate(order.createdAt)}</p>
-						</OrderCard>
-					);
-				})
-			)}
+							<p>som der er blevet lavet på følgende mail: {userData.email}</p>
+						</UserContainer>
+					)
+				)}
+			</div>
 		</OrderContainer>
 	);
 };

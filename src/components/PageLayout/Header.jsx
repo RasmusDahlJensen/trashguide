@@ -24,7 +24,7 @@ export const Header = () => {
 
 	const renderAuthButton = () => {
 		if (isLoggedIn) {
-			return <LogoutButton />;
+			return <NavLink to="/profile">PROFIL</NavLink>;
 		} else {
 			return <NavLink to="/login">LOGIN</NavLink>;
 		}

@@ -4,28 +4,12 @@ import {
 	StepsContainer,
 } from "../../pages/purchaseStyle";
 import step from "../../assets/stepTwo.svg";
-import { useState } from "react";
 
-export const PurchaseStepTwo = ({ selectedContainerId }) => {
-	const [productData, setProductData] = useState({
-		fullname: "",
-		address: "",
-		zipcode: "",
-		city: "",
-		email: "",
-		phone: "",
-		container_id: selectedContainerId,
-	});
-
-	const handleProducts = (e) => {
-		const { name, value } = e.target;
-
-		setProductData({
-			...productData,
-			[name]: value,
-		});
-	};
-
+export const PurchaseStepTwo = ({
+	navigateToStepThree,
+	productData,
+	setProductData,
+}) => {
 	const productSubmit = async (e) => {
 		e.preventDefault();
 
@@ -37,10 +21,17 @@ export const PurchaseStepTwo = ({ selectedContainerId }) => {
 				},
 				body: JSON.stringify(productData),
 			});
-			window.location.reload(true);
+			navigateToStepThree(productData);
 		} catch (error) {
 			console.error("Error posting review:", error);
 		}
+	};
+
+	const handleProducts = (name, value) => {
+		setProductData({
+			...productData,
+			[name]: value,
+		});
 	};
 
 	return (
@@ -69,16 +60,17 @@ export const PurchaseStepTwo = ({ selectedContainerId }) => {
 								name="fullname"
 								placeholder="Navn"
 								value={productData.fullname}
-								onChange={handleProducts}
+								onChange={(e) => handleProducts(e.target.name, e.target.value)}
 								required
 							/>
+
 							<input
 								type="text"
 								id="address"
 								name="address"
 								placeholder="adresse"
 								value={productData.address}
-								onChange={handleProducts}
+								onChange={(e) => handleProducts(e.target.name, e.target.value)}
 								required
 							/>
 							<input
@@ -87,7 +79,7 @@ export const PurchaseStepTwo = ({ selectedContainerId }) => {
 								name="zipcode"
 								placeholder="Postnummer"
 								value={productData.zipcode}
-								onChange={handleProducts}
+								onChange={(e) => handleProducts(e.target.name, e.target.value)}
 								required
 							/>
 							<input
@@ -96,7 +88,7 @@ export const PurchaseStepTwo = ({ selectedContainerId }) => {
 								name="city"
 								placeholder="By"
 								value={productData.city}
-								onChange={handleProducts}
+								onChange={(e) => handleProducts(e.target.name, e.target.value)}
 								required
 							/>
 							<input
@@ -105,7 +97,7 @@ export const PurchaseStepTwo = ({ selectedContainerId }) => {
 								name="email"
 								placeholder="Email"
 								value={productData.email}
-								onChange={handleProducts}
+								onChange={(e) => handleProducts(e.target.name, e.target.value)}
 								required
 							/>
 							<input
@@ -114,7 +106,7 @@ export const PurchaseStepTwo = ({ selectedContainerId }) => {
 								name="phone"
 								placeholder="Telefon"
 								value={productData.phone}
-								onChange={handleProducts}
+								onChange={(e) => handleProducts(e.target.name, e.target.value)}
 								required
 							/>
 							<div>

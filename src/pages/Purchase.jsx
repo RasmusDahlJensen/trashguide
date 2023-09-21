@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { PurchaseStepOne } from "../components/Purchase/PurchaseStepOne";
 import { PurchaseStepTwo } from "../components/Purchase/PurchaseStepTwo";
+import { PurchaseStepThree } from "../components/Purchase/PurchaseStepThree";
 import { MainContainer } from "./purchaseStyle";
 
 export const Purchase = () => {
@@ -9,6 +10,15 @@ export const Purchase = () => {
 	const [loading, setLoading] = useState(true);
 	const [selectedContainerId, setSelectedContainerId] = useState(null);
 	const [currentStep, setCurrentStep] = useState(1);
+	const [productData, setProductData] = useState({
+		fullname: "",
+		address: "",
+		zipcode: "",
+		city: "",
+		email: "",
+		phone: "",
+		container_id: selectedContainerId,
+	});
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -38,6 +48,14 @@ export const Purchase = () => {
 		}
 	};
 
+	const navigateToStepThree = () => {
+		if (selectedContainerId) {
+			setCurrentStep(3);
+		} else {
+			return;
+		}
+	};
+
 	return (
 		<MainContainer>
 			{loading ? (
@@ -46,22 +64,29 @@ export const Purchase = () => {
 				<>
 					{/* Call the component with props */}
 					<PurchaseStepOne
-						//Pass teh fetched data
+						// Pass the fetched data
 						containerData={containerData}
-						//Pass it the container ID state for its CSS functionality
+						// Pass it the container ID state for its CSS functionality
 						selectedContainerId={selectedContainerId}
-						//Alælows it to set the ID on each product
+						// Allows it to set the ID on each product
 						handleContainerSelection={handleContainerSelection}
-						//Allows the button to render the next component
+						// Allows the button to render the next component
 						navigateToStepTwo={navigateToStepTwo}
 					/>
 				</>
 			) : currentStep === 2 ? (
 				<>
-					<PurchaseStepTwo selectedContainerId={selectedContainerId} />
+					<PurchaseStepTwo
+						navigateToStepThree={navigateToStepThree}
+						productData={productData}
+						setProductData={setProductData}
+					/>
 				</>
-			) : //Render nothing if there's not a step 1 or 2
-			null}
+			) : currentStep === 3 ? (
+				<>
+					<PurchaseStepThree productData={productData} />
+				</>
+			) : null}
 		</MainContainer>
 	);
 };

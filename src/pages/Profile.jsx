@@ -104,7 +104,7 @@ export const Profile = () => {
 					console.log(response);
 					if (response.status === 200) {
 						//Rerender to update component
-						rerender(!render);
+						window.location.reload(true);
 					}
 				})
 				.catch((error) => {

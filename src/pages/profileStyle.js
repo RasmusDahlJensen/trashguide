@@ -5,6 +5,7 @@ export const OrderContainer = styled.main`
 	gap: 50px;
 	justify-content: center;
 	margin-top: 100px;
+	flex-wrap: wrap;
 `;
 
 export const OrderCard = styled.div`
@@ -18,7 +19,7 @@ export const OrderCard = styled.div`
 
 export const CardContainer = styled.div`
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-columns: 1fr 1fr;
 	gap: 15px;
 	height: 350px;
 `;
@@ -43,5 +44,6 @@ export const UserContainer = styled.div`
 	button {
 		padding: 15px;
 		width: 150px;
-		background-color: ${(props) => props.theme.primaryColor}
+		background-color: ${(props) => props.theme.primaryColor};
+	}
 `;

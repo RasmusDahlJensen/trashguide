@@ -25,7 +25,7 @@ const GoogleMaps = ({ orgId, height, width }) => {
 		lat: orgDetails.longtitude,
 		lng: orgDetails.latitude,
 	};
-	
+
 	const mapOptions = {
 		disableDefaultUI: true,
 	};

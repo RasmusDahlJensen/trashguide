@@ -75,3 +75,33 @@ export const ConfirmationContainer = styled.div`
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	height: 300px;
 `;
+
+export const FormContainer = styled.form`
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	width: 100%;
+	gap: 5px;
+	input {
+		width: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+		border-radius: 5px;
+		border: none;
+	}
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	button {
+		padding: 15px;
+		width: 150px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		border: none;
+		background-color: ${(props) => props.theme.primaryColor};
+	}
+`;

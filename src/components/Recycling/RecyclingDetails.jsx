@@ -84,20 +84,19 @@ export const RecyclingDetails = () => {
 	};
 
 	const deleteReview = (id) => {
-		console.log("Review ID", id);
+		// console.log("Review ID", id);
 
 		const accessToken = localStorage.getItem("access_token");
-
 		if (!accessToken) {
 			console.error("Access token not found in localStorage");
 			return;
 		}
-		const headers = {
-			Authorization: `Bearer ${accessToken}`,
-		};
+
 		try {
 			axios
-				.delete(`http://localhost:3000/reviews/${id}`, { headers })
+				.delete(`http://localhost:3000/reviews/${id}`, {
+					Authorization: `Bearer ${accessToken}`,
+				})
 				.then((response) => {
 					console.log(response);
 					if (response.status === 200) {

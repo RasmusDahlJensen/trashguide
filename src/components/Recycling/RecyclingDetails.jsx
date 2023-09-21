@@ -24,6 +24,7 @@ export const RecyclingDetails = () => {
 	const [loading, setLoading] = useState(true);
 	const { org_id } = useParams();
 	const { isLoggedIn } = useAuth();
+	const [render, rerender] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -40,7 +41,7 @@ export const RecyclingDetails = () => {
 		};
 
 		fetchData();
-	}, []);
+	}, [render, org_id]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -57,7 +58,7 @@ export const RecyclingDetails = () => {
 		};
 
 		fetchData();
-	}, [org_id]);
+	}, [render, org_id]);
 
 	useEffect(() => {
 		if (orgData && reviewData) {
@@ -117,7 +118,10 @@ export const RecyclingDetails = () => {
 			axios
 				.delete(`http://localhost:3000/reviews/${id}`, { headers })
 				.then((response) => {
-					if (response.status === 204) {
+					console.log(response);
+					if (response.status === 200) {
+						//Rerender to update component
+						rerender(!render);
 					}
 				})
 				.catch((error) => {
@@ -148,7 +152,7 @@ export const RecyclingDetails = () => {
 					</RecycleDetails>
 					<TextArea>
 						{isLoggedIn ? (
-							<ReviewForm org_id={org_id} />
+							<ReviewForm org_id={org_id} render={render} rerender={rerender} />
 						) : (
 							<TextBoxContainer>
 								<p>Du skal være logget ind for at skrive en anmeldelse</p>

@@ -7,7 +7,7 @@ import {
 	TextAreaTitle,
 } from "./reviewFormStyle";
 
-export const ReviewForm = ({ org_id }) => {
+export const ReviewForm = ({ org_id, render, rerender }) => {
 	const { userData } = useAuth();
 
 	const [newReview, setNewReview] = useState({
@@ -49,7 +49,7 @@ export const ReviewForm = ({ org_id }) => {
 				},
 				body: JSON.stringify(newReview),
 			});
-			window.location.reload(true);
+			rerender(!render);
 		} catch (error) {
 			console.error("Error posting review:", error);
 		}

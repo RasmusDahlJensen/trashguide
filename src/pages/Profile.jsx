@@ -57,14 +57,24 @@ export const Profile = () => {
 	}, [filteredOrders, orderDetails]);
 
 	return (
-		<div>
+		<main>
 			{loading ? (
 				<div>Loading</div>
 			) : (
 				orderDetails.map((order) => {
-					return <div key={order.id}>{order.fullname}</div>;
+					return (
+						<div key={order.id}>
+							<p>{order.fullname}</p>
+							<p>
+								{order.address} {order.zipcode}
+								{order.city}
+							</p>
+							<p>{order.container_id}</p>
+							<p>{order.phone}</p>
+						</div>
+					);
 				})
 			)}
-		</div>
+		</main>
 	);
 };

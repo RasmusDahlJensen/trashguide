@@ -5,13 +5,11 @@ import axios from "axios";
 const GoogleMaps = ({ orgId, height, width }) => {
 	const [orgDetails, setOrgDetails] = useState({});
 	useEffect(() => {
-		// console.log(orgId);
 		axios
 			.get(`http://localhost:3000/orgs/${orgId}`)
 			.then((response) => {
 				const orgData = response.data;
 				setOrgDetails(orgData);
-				// console.log(orgData);
 			})
 			.catch((error) => {
 				console.error("Error fetching organization details: ", error);
@@ -27,7 +25,7 @@ const GoogleMaps = ({ orgId, height, width }) => {
 		lat: orgDetails.longtitude,
 		lng: orgDetails.latitude,
 	};
-
+	
 	const mapOptions = {
 		disableDefaultUI: true,
 	};

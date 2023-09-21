@@ -91,11 +91,12 @@ export const RecyclingDetails = () => {
 			console.error("Access token not found in localStorage");
 			return;
 		}
-
 		try {
 			axios
 				.delete(`http://localhost:3000/reviews/${id}`, {
-					Authorization: `Bearer ${accessToken}`,
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
 				})
 				.then((response) => {
 					console.log(response);

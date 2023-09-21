@@ -41,6 +41,8 @@ export const ReviewForm = ({ org_id, render, rerender }) => {
 				return;
 			}
 
+			console.log(accessToken);
+
 			const response = await fetch("http://localhost:3000/reviews", {
 				method: "POST",
 				headers: {

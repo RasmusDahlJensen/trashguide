@@ -49,7 +49,17 @@ export const ReviewForm = ({ org_id, render, rerender }) => {
 				},
 				body: JSON.stringify(newReview),
 			});
+			//rerender the component to show the review
 			rerender(!render);
+			//Set the state back to default with the default object properties
+			setNewReview({
+				org_id: org_id,
+				subject: "",
+				comment: "Ikke gyldig",
+				num_stars: 1,
+				date: new Date().toISOString(),
+				user_id: userData.id,
+			});
 		} catch (error) {
 			console.error("Error posting review:", error);
 		}

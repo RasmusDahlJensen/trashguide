@@ -29,11 +29,17 @@ export const RecyclingDetails = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axios.get(
-					`http://localhost:3000/orgs/${org_id}`
-				);
-				const data = response.data;
-				setOrgData(data);
+				//Create an array with 2 indexes and setting a promise all
+				//to wait for them to resolve before populating the states with data
+				///and then disabling the loading
+				const [orgResponse, reviewsResponse] = await Promise.all([
+					axios.get(`http://localhost:3000/orgs/${org_id}`),
+					axios.get(`http://localhost:3000/reviews/${org_id}`),
+				]);
+
+				setOrgData(orgResponse.data);
+				setReviewData(reviewsResponse.data);
+				setLoading(false);
 			} catch (error) {
 				console.error("Error fetching data: ", error);
 				setLoading(false);
@@ -42,31 +48,6 @@ export const RecyclingDetails = () => {
 
 		fetchData();
 	}, [render, org_id]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await axios.get(
-					`http://localhost:3000/reviews/${org_id}`
-				);
-				const data = response.data;
-				setReviewData(data);
-			} catch (error) {
-				console.error("Error fetching data: ", error);
-				setLoading(false);
-			}
-		};
-
-		fetchData();
-	}, [render, org_id]);
-
-	useEffect(() => {
-		if (orgData && reviewData) {
-			setLoading(false);
-			// console.log("Orgdata:", orgData, "ReviewData", reviewData);
-			// console.log("loading complete");
-		}
-	}, [orgData, reviewData]);
 
 	//A lesser version of the component as I dont need the averaging feature.
 	const ReviewRating = (rating) => {

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { OrderCard, OrderContainer } from "./profileStyle";
+import {
+	ContainerName,
+	ContainerPicture,
+} from "../components/ProfileContainer";
 
 export const Profile = () => {
 	const userID = localStorage.getItem("user_id");
@@ -56,25 +61,44 @@ export const Profile = () => {
 		}
 	}, [filteredOrders, orderDetails]);
 
+	//format the isoDate to danish time
+	const formatDate = (isoDate) => {
+		const date = new Date(isoDate);
+		const options = {
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+			hour: "numeric",
+			minute: "numeric",
+		};
+		const dateFormat = new Intl.DateTimeFormat("da-DK", options);
+		return dateFormat.format(date);
+	};
+
 	return (
-		<main>
+		<OrderContainer>
 			{loading ? (
 				<div>Loading</div>
 			) : (
 				orderDetails.map((order) => {
 					return (
-						<div key={order.id}>
+						<OrderCard key={order.id}>
+							<p>Ordre nummer {order.id}</p>
 							<p>{order.fullname}</p>
 							<p>
 								{order.address} {order.zipcode}
 								{order.city}
 							</p>
-							<p>{order.container_id}</p>
+							<p>
+								<ContainerName orderId={order.container_id} />
+							</p>
+							<ContainerPicture orderId={order.container_id} />
 							<p>{order.phone}</p>
-						</div>
+							<p>{formatDate(order.createdAt)}</p>
+						</OrderCard>
 					);
 				})
 			)}
-		</main>
+		</OrderContainer>
 	);
 };

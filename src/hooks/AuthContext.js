@@ -8,11 +8,7 @@ export function AuthProvider({ children }) {
 	const accessToken = localStorage.getItem("access_token");
 
 	useEffect(() => {
-		if (accessToken) {
-			setIsLoggedIn(true);
-		} else {
-			setIsLoggedIn(false);
-		}
+		accessToken ? setIsLoggedIn(true) : setIsLoggedIn(false);
 	}, []);
 
 	const login = (access_token, user) => {

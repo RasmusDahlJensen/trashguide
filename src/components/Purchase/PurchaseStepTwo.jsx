@@ -3,91 +3,52 @@ import {
 	FlexContainer,
 	StepsContainer,
 } from "../../pages/purchaseStyle";
+import step from "../../assets/stepTwo.svg";
+import { useState } from "react";
 
-export const PurchaseStepTwo = () => {
+export const PurchaseStepTwo = ({ selectedContainerId }) => {
+	const [productData, setProductData] = useState({
+		fullname: "",
+		address: "",
+		zipcode: "",
+		city: "",
+		email: "",
+		phone: "",
+		container_id: selectedContainerId,
+	});
+
+	const handleProducts = (e) => {
+		const { name, value } = e.target;
+
+		setProductData({
+			...productData,
+			[name]: value,
+		});
+	};
+
+	const productSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			const response = await fetch("http://localhost:3000/orders", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(productData),
+			});
+			window.location.reload(true);
+		} catch (error) {
+			console.error("Error posting review:", error);
+		}
+	};
+
 	return (
 		<>
 			<FlexContainer>
 				<StepsContainer>
 					<figure>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="55"
-							height="184"
-							viewBox="0 0 55 184"
-						>
-							<g id="Navi" transform="translate(0.423)">
-								<g
-									id="Ellipse_1_copy"
-									data-name="Ellipse 1 copy"
-									transform="translate(-0.423)"
-									fill="rgba(107,89,211,0)"
-									stroke="#d8eadb"
-									stroke-linejoin="round"
-									stroke-width="3"
-								>
-									<circle cx="27.5" cy="27.5" r="27.5" stroke="none" />
-									<circle cx="27.5" cy="27.5" r="26" fill="none" />
-								</g>
-								<circle
-									id="Ellipse_1"
-									data-name="Ellipse 1"
-									cx="20.5"
-									cy="20.5"
-									r="20.5"
-									transform="translate(6.577 7)"
-									fill="#d8eadb"
-								/>
-								<circle
-									id="Ellipse_1_copy_2"
-									data-name="Ellipse 1 copy 2"
-									cx="20.5"
-									cy="20.5"
-									r="20.5"
-									transform="translate(6.577 143)"
-									fill="#bcbdbd"
-								/>
-								<text
-									id="_1"
-									data-name="1"
-									transform="translate(23.691 32.5)"
-									font-size="16"
-									font-family="SegoeUI, Segoe UI"
-								>
-									<tspan x="0" y="0">
-										1
-									</tspan>
-								</text>
-								<text
-									id="_2"
-									data-name="2"
-									transform="translate(22.691 169.5)"
-									fill="#f9f9f9"
-									font-size="16"
-									font-family="SegoeUI, Segoe UI"
-								>
-									<tspan x="0" y="0">
-										2
-									</tspan>
-								</text>
-								<rect
-									id="Rectangle_2"
-									data-name="Rectangle 2"
-									width="3"
-									height="88"
-									transform="translate(25.577 55)"
-									fill="#b8b9b9"
-								/>
-								<rect
-									id="Rectangle_2_copy"
-									data-name="Rectangle 2 copy"
-									width="3"
-									height="40"
-									transform="translate(25.577 55)"
-									fill="#d8eadb"
-								/>
-							</g>
-						</svg>
+						<img src={step} alt="step tracker" />
 					</figure>
 				</StepsContainer>
 				<ContentContainer>
@@ -100,9 +61,66 @@ export const PurchaseStepTwo = () => {
 							lucilius pertinacia eu vel.
 						</p>
 					</div>
-					<div>Form her</div>
 					<div>
-						<button>Videre</button>
+						<form onSubmit={productSubmit}>
+							<input
+								type="text"
+								id="fullname"
+								name="fullname"
+								placeholder="Navn"
+								value={productData.fullname}
+								onChange={handleProducts}
+								required
+							/>
+							<input
+								type="text"
+								id="address"
+								name="address"
+								placeholder="adresse"
+								value={productData.address}
+								onChange={handleProducts}
+								required
+							/>
+							<input
+								type="number"
+								id="zipcode"
+								name="zipcode"
+								placeholder="Postnummer"
+								value={productData.zipcode}
+								onChange={handleProducts}
+								required
+							/>
+							<input
+								type="text"
+								id="city"
+								name="city"
+								placeholder="By"
+								value={productData.city}
+								onChange={handleProducts}
+								required
+							/>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								placeholder="Email"
+								value={productData.email}
+								onChange={handleProducts}
+								required
+							/>
+							<input
+								type="number"
+								id="phone"
+								name="phone"
+								placeholder="Telefon"
+								value={productData.phone}
+								onChange={handleProducts}
+								required
+							/>
+							<div>
+								<button type="submit">Videre</button>
+							</div>
+						</form>
 					</div>
 				</ContentContainer>
 			</FlexContainer>

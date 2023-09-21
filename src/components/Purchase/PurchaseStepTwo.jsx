@@ -69,7 +69,7 @@ export const PurchaseStepTwo = ({
 							type="text"
 							id="address"
 							name="address"
-							placeholder="adresse"
+							placeholder="Adresse"
 							value={productData.address}
 							onChange={(e) => handleProducts(e.target.name, e.target.value)}
 							required

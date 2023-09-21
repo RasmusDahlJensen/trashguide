@@ -38,6 +38,10 @@ export const Purchase = () => {
 
 	const handleContainerSelection = (containerId) => {
 		setSelectedContainerId(containerId);
+		setProductData({
+			...productData,
+			container_id: containerId,
+		});
 	};
 
 	const navigateToStepTwo = () => {

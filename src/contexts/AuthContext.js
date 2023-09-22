@@ -6,10 +6,10 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
 	//Here we track if the user is logged in or not
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	///Grab the access token from localstorage
-	const accessToken = localStorage.getItem("access_token");
 	//Store user data
 	const [userData, setUserData] = useState({});
+	///Grab the access token from localstorage
+	const accessToken = localStorage.getItem("access_token");
 
 	useEffect(() => {
 		//If we have an access token we're assumed logged in
@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
 		</AuthContext.Provider>
 	);
 }
-// Custom h ook to access the values
+// Custom hook to access the values
 export function useAuth() {
 	return useContext(AuthContext);
 }

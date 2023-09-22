@@ -32,6 +32,7 @@ export const ReviewCard = styled.div`
 	height: 100%;
 	img {
 		width: 25px;
+		cursor: pointer;
 	}
 	p {
 		margin-top: 1px;

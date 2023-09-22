@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { FormContainer, FormImage, MainContainer } from "./loginStyle";
 import logo from "../assets/Logo.png";
 import { LoginForm } from "../components/LoginForm";

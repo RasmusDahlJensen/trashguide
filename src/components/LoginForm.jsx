@@ -8,9 +8,9 @@ export const LoginForm = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
-	const { login } = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
+	const { login } = useAuth();
 
 	//Reset the form error after 3 seconds
 	useEffect(() => {

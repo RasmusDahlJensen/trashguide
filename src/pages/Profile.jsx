@@ -44,6 +44,7 @@ export const Profile = () => {
 		};
 		fetchData();
 	}, [userID]);
+	
 	// Create a an array for all filtered orders
 	let filteredOrders = [];
 	if (!loading) {

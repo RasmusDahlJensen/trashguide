@@ -39,6 +39,7 @@ export const RecyclingDetails = () => {
 
 				setOrgData(orgResponse.data);
 				setReviewData(reviewsResponse.data);
+				console.log(reviewsResponse.data);
 				setLoading(false);
 			} catch (error) {
 				console.error("Error fetching data: ", error);

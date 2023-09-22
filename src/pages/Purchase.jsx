@@ -9,7 +9,9 @@ export const Purchase = () => {
 	const [containerData, setContainerData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [selectedContainerId, setSelectedContainerId] = useState(null);
+	//Initial step is always 1
 	const [currentStep, setCurrentStep] = useState(1);
+	//Initial form data
 	const [productData, setProductData] = useState({
 		fullname: "",
 		address: "",
@@ -19,13 +21,12 @@ export const Purchase = () => {
 		phone: "",
 		container_id: selectedContainerId,
 	});
-
+	//Fetch container data for display
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get(`http://localhost:3000/containers`);
-				const data = response.data;
-				setContainerData(data);
+				setContainerData(response.data);
 				setLoading(false);
 			} catch (error) {
 				console.error("Error fetching data: ", error);
@@ -38,12 +39,14 @@ export const Purchase = () => {
 
 	const handleContainerSelection = (containerId) => {
 		setSelectedContainerId(containerId);
+		//Spread operator to make sure we only change container id and no other value
 		setProductData({
 			...productData,
 			container_id: containerId,
 		});
 	};
 
+	//If this function is called we set step to 2
 	const navigateToStepTwo = () => {
 		if (selectedContainerId) {
 			setCurrentStep(2);
@@ -51,7 +54,7 @@ export const Purchase = () => {
 			return;
 		}
 	};
-
+	//If this function is called we set step to 3
 	const navigateToStepThree = () => {
 		if (selectedContainerId) {
 			setCurrentStep(3);
@@ -64,7 +67,8 @@ export const Purchase = () => {
 		<MainContainer>
 			{loading ? (
 				<div>Loading...</div>
-			) : currentStep === 1 ? (
+			) : // If we're on step 1 render this component
+			currentStep === 1 ? (
 				<>
 					{/* Call the component with props */}
 					<PurchaseStepOne
@@ -78,16 +82,20 @@ export const Purchase = () => {
 						navigateToStepTwo={navigateToStepTwo}
 					/>
 				</>
-			) : currentStep === 2 ? (
+			) : // If we're on step 2 render this component
+			currentStep === 2 ? (
 				<>
 					<PurchaseStepTwo
+						// Pass it the relevant props for data and functions
 						navigateToStepThree={navigateToStepThree}
 						productData={productData}
 						setProductData={setProductData}
 					/>
 				</>
-			) : currentStep === 3 ? (
+			) : // If we're on step 3 render this component
+			currentStep === 3 ? (
 				<>
+					{/* Pass it the final product data for the confirmation screen */}
 					<PurchaseStepThree productData={productData} />
 				</>
 			) : null}

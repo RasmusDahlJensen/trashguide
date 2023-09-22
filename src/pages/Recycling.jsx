@@ -20,37 +20,40 @@ export const Recycling = () => {
 
 	useEffect(() => {
 		axios
+			// Fetch all organisations
 			.get("http://localhost:3000/orgs?attributes=id,name,address,zipcode,city")
 			.then((response) => {
-				const orgs = response.data;
-				setOrgData(orgs);
-				console.log(orgs);
+				setOrgData(response.data);
 
 				//Create an array of promises to fetch rating for each organisation
-				const ratingPromises = orgs.map((org) => {
-					return axios
-						.get(`http://localhost:3000/reviews/${org.id}`)
-						.then((response) => ({ orgId: org.id, rating: response.data }))
-						.catch((error) => {
-							console.error(
-								`Error fetching rating data for org ID ${org.id}: `,
-								error
-							);
-						});
+				//Once finished we'll have an array of objects, each containing org ID and an array of its ratings
+				const ratingPromises = response.data.map((org) => {
+					return (
+						axios
+							//Fetch for a specific organisation
+							.get(`http://localhost:3000/reviews/${org.id}`)
+							.then((response) => ({ orgId: org.id, rating: response.data }))
+							.catch((error) => {
+								console.error(
+									`Error fetching rating data for org ID ${org.id}: `,
+									error
+								);
+							})
+					);
 				});
 				//Using promise.alæl to wait for all promises to resolve
 				Promise.all(ratingPromises).then((ratingsData) => {
-					//Once resolved we create an empty object we can fill we data
+					//Empty object to organize the data
 					const ratingsObject = {};
-					//Here we go through each orgID and its ratings and put them in the ratingsObject
+					//Here we fill the object with org IDs and their ratings
 					ratingsData.forEach(({ orgId, rating }) => {
+						// Object property assignement to have org IDs and index and ratings as its value
 						ratingsObject[orgId] = rating;
 					});
-
 					//Take the results and put it in the setRatings state
 					setRatings(ratingsObject);
+					//Stop loading so content can render
 					setLoading(false);
-					// console.log(ratingsObject);
 				});
 			})
 			.catch((error) => {
@@ -60,7 +63,7 @@ export const Recycling = () => {
 	}, []);
 
 	const navigate = useNavigate();
-
+	//Change page to the chosen card
 	const navigateDetail = (org_id) => {
 		navigate(`/recycling/${org_id}`);
 	};
@@ -89,8 +92,6 @@ export const Recycling = () => {
 						</CardContainer>
 					))
 				)}
-
-				<Outlet />
 			</MainContainer>
 			<BackgroundImage src={bgImage} alt="background artwork" />
 		</>

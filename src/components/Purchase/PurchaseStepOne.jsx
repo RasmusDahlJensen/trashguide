@@ -51,11 +51,10 @@ export const PurchaseStepOne = ({
 							</Card>
 						))}
 					</CardContainer>
+
 					<div>
-						<div>
-							{/* Clicking the button will advance the form to step 2 */}
-							<button onClick={navigateToStepTwo}>Videre</button>
-						</div>
+						{/* Clicking the button will advance the form to step 2 */}
+						<button onClick={navigateToStepTwo}>Videre</button>
 					</div>
 				</ContentContainer>
 			</FlexContainer>

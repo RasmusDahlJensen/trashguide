@@ -41,7 +41,8 @@ export const Sorting = () => {
 		setSearchQuery(event.target.value);
 	};
 
-	// Item filter based on search state data
+	// Create a new array based on the filter, if anything in the original array matches
+	//whatever is being searched it'll filter that into a new array.
 	const filteredProductArr = productArr.filter((product) =>
 		product.title.toLowerCase().includes(searchQuery.toLowerCase())
 	);

@@ -31,9 +31,17 @@ export const ContentContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	gap: 30px;
+
 	h2 {
 		font-weight: 400;
 		font-size: 30px;
+	}
+	button {
+		padding: 15px;
+		width: 150px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		border: none;
+		background-color: ${(props) => props.theme.primaryColor};
 	}
 `;
 

@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
+// Using globalstyle to apply styling that needs to be on ALL specified elements for consistent styling
 export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;

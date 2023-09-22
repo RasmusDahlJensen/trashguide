@@ -9,10 +9,10 @@ export const Title = () => {
 			case location.pathname === "/":
 				document.title = "Affaldsguiden - Forside";
 				break;
-			case location.pathname === "/sorting":
+			case location.pathname.startsWith("/sorting"):
 				document.title = "Affaldsguiden - Sortering";
 				break;
-			case location.pathname === "/recycling":
+			case location.pathname.startsWith("/recycling"):
 				document.title = "Affaldsguiden - Genbrugsstationer";
 				break;
 			case location.pathname === "/purchase":
@@ -20,6 +20,9 @@ export const Title = () => {
 				break;
 			case location.pathname === "/login":
 				document.title = "Hotel Overlook - Log ind";
+				break;
+			case location.pathname === "/profile":
+				document.title = "Hotel Overlook - Profil";
 				break;
 			default:
 				document.title = "Affaldsguiden";

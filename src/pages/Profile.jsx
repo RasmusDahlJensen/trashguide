@@ -119,6 +119,8 @@ export const Profile = () => {
 			<CardContainer>
 				{loading ? (
 					<div>Loading</div>
+				) : orderDetails.length === 0 ? (
+					<div>Du har ingen bestillinger</div>
 				) : (
 					orderDetails.map((order) => {
 						return (
@@ -132,7 +134,6 @@ export const Profile = () => {
 									/>
 								</CardTitle>
 								<p>Bestilt på dato: </p>
-
 								<p>{formatDate(order.createdAt)}</p>
 								<ContainerType>
 									<p>Container type:</p>
@@ -146,6 +147,7 @@ export const Profile = () => {
 					})
 				)}
 			</CardContainer>
+
 			<div>
 				{loading ? (
 					<div>Loading</div>

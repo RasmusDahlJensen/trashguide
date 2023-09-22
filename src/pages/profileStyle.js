@@ -38,6 +38,12 @@ export const ContainerType = styled.div`
 	align-items: center;
 	border: 1px solid black;
 	width: 100%;
+	margin: auto;
+	padding: 2px;
+	border-radius: 5px;
+	p {
+		margin: 5px;
+	}
 `;
 
 export const UserContainer = styled.div`

@@ -50,9 +50,7 @@ export const RecyclingDetails = () => {
 		fetchData();
 	}, [render, org_id]);
 
-	//A lesser version of the component as I dont need the averaging feature.
 	const ReviewRating = (rating) => {
-		// console.log(rating);
 		// Check if numStars is a valid number
 		if (isNaN(rating)) {
 			return "Ingen stjerner givet";
@@ -120,6 +118,7 @@ export const RecyclingDetails = () => {
 				<div>Loading...</div>
 			) : (
 				<>
+					{/* Google maps component with specified height and width */}
 					<GoogleMaps orgId={org_id} height={"400px"} width={"100%"} />
 					<RecycleDetails>
 						<h2>{orgData.name}</h2>
@@ -134,8 +133,10 @@ export const RecyclingDetails = () => {
 					</RecycleDetails>
 					<TextArea>
 						{isLoggedIn ? (
+							// Call the reviewform with id and render props
 							<ReviewForm org_id={org_id} render={render} rerender={rerender} />
 						) : (
+							// If not logged in you're receiving this message with a loginform
 							<TextBoxContainer>
 								<p>Du skal være logget ind for at skrive en anmeldelse</p>
 								<LoginForm />
@@ -143,15 +144,19 @@ export const RecyclingDetails = () => {
 						)}
 					</TextArea>
 					<ReviewContainer>
+						{/* If the reviewdata array doesnt have any reviews we get this comment: */}
 						{reviewData.length === 0 ? (
 							<p>Ingen kommentarer fundet</p>
 						) : (
+							// Otherwise we map out the comments
 							reviewData.map((review) => (
 								<ReviewCard key={review.id}>
 									<div>
 										<p>
 											{review.user.firstname} {review.user.lastname}
 										</p>
+										{/* We make sure the user ID thats logged in and the user id from the user */}
+										{/* That posted is the same before we allow them to delete */}
 										{review.user.id ===
 										parseFloat(localStorage.getItem("user_id")) ? (
 											<img

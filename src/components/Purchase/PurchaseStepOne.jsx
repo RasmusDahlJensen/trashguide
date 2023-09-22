@@ -37,7 +37,7 @@ export const PurchaseStepOne = ({
 						{containerData.map((container) => (
 							<Card
 								key={container.id}
-								//When a card is clicked we grab the ID and put it in a state
+								//When a card is clicked we grab the ID and put it in a state in the parent file
 								onClick={() => handleContainerSelection(container.id)}
 								//Whichever card has its ID saved will have a border
 								className={selectedContainerId === container.id ? "active" : ""}

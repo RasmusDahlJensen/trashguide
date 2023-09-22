@@ -8,7 +8,6 @@ import {
 } from "./headerStyle";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/Logo.png";
-import { LogoutButton } from "../Logout";
 import { useAuth } from "../../contexts/AuthContext";
 
 export const Header = () => {
@@ -22,6 +21,7 @@ export const Header = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
 	};
 
+	//Depending if the login state is true or false it'll render the header login section like this
 	const renderAuthButton = () => {
 		if (isLoggedIn) {
 			return <NavLink to="/profile">PROFIL</NavLink>;

@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+//Fetch name of the container based on the ID from the parameter
 export const ContainerName = ({ orderId }) => {
 	const [containerName, setContainerName] = useState("");
-
 	useEffect(() => {
 		const fetchContainerData = async () => {
 			try {
@@ -15,16 +15,15 @@ export const ContainerName = ({ orderId }) => {
 				console.error(error);
 			}
 		};
-
 		fetchContainerData();
 	}, [orderId]);
 
 	return containerName;
 };
 
+//Fetch correct SVG based on the ID from the parameter
 export const ContainerPicture = ({ orderId }) => {
 	const [containerSVG, setContainerSVG] = useState("");
-
 	useEffect(() => {
 		const fetchContainerData = async () => {
 			try {

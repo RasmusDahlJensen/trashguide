@@ -30,17 +30,17 @@ export const LoginForm = () => {
 		const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 		return emailPattern.test(email);
 	};
-	//When you submit the form you fire this function
+	//When you submit the form you call this function
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		//If there's not a username or a password, or if its just missing one of them
-		//We set the error to this:
+		//we display an error:
 		if (!username || !password) {
 			setErrorMessage("Udfyld venligst både email og kodeord.");
 			return;
 		}
-		//If the email fails the REGEX test we set the error to this:
+		//If the email fails the REGEX test we display this error:
 		if (!isEmailValid(username)) {
 			setErrorMessage("Venligst indtast en gyldig email.");
 			return;

@@ -32,17 +32,12 @@ export const ReviewForm = ({ org_id, render, rerender }) => {
 
 	const handleReviewSubmit = async (e) => {
 		e.preventDefault();
-
 		try {
 			const accessToken = localStorage.getItem("access_token");
-
 			if (!accessToken) {
 				console.error("Access token not found in localStorage");
 				return;
 			}
-
-			console.log(accessToken);
-
 			const response = await fetch("http://localhost:3000/reviews", {
 				method: "POST",
 				headers: {

@@ -84,6 +84,7 @@ export const Recycling = () => {
 								</p>
 								<RatingContainer>
 									<figure>
+										{/* Render stars based on the ID when calling this component */}
 										<StarRating orgId={org.id} />
 									</figure>
 									<p>({ratings[org.id]?.length} anmeldelser)</p>

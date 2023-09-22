@@ -20,7 +20,6 @@ export const AppRouter = () => {
 			<Route path="/purchase/" element={<Purchase />} />
 			<Route path="/login/" element={<Login />} />
 			<Route path="/profile/" element={<Profile />} />
-
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);

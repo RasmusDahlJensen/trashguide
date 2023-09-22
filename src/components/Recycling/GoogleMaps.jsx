@@ -4,17 +4,19 @@ import axios from "axios";
 
 const GoogleMaps = ({ orgId, height, width }) => {
 	const [orgDetails, setOrgDetails] = useState({});
+	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		axios
 			.get(`http://localhost:3000/orgs/${orgId}`)
 			.then((response) => {
 				const orgData = response.data;
 				setOrgDetails(orgData);
+				setLoading(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching organization details: ", error);
 			});
-	}, []);
+	}, [orgId]);
 
 	const mapContainerStyle = {
 		width: width,
@@ -37,7 +39,7 @@ const GoogleMaps = ({ orgId, height, width }) => {
 		return <div>Error loading maps</div>;
 	}
 
-	if (!isLoaded) {
+	if (!isLoaded || loading) {
 		return <div>Loading maps</div>;
 	}
 
